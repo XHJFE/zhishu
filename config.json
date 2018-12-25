@@ -1,0 +1,11 @@
+{
+  "env": "dev",
+  "proxy_server_url": {
+    "dev": "http://zcms.xhj.com:88",
+    "production": "http://console.xhj.com"
+  },
+  "base_server_url": {
+    "dev": "http://192.168.2.117:88",
+    "production": "http://console.xhj.com"
+  }
+}
