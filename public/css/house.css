@@ -263,3 +263,6 @@ a{text-decoration:none;color:#333;}
         transform: translate3d(0,-4px,0);
     }
 }
+
+#map_container{min-height: 300px;}
+#line_container{min-height: 300px;}

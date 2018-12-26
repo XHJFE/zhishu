@@ -1,11 +1,48 @@
 {
-  "env": "dev",
-  "proxy_server_url": {
-    "dev": "http://zcms.xhj.com:88",
-    "production": "http://console.xhj.com"
+  "proxy": {
+    "env": "dev",
+    "proxy_server_url": {
+      "dev": "http://zcms.xhj.com:88",
+      "production": "http://console.xhj.com"
+    },
+    "base_server_url": {
+      "dev": "http://192.168.2.117:88",
+      "production": "http://console.xhj.com"
+    }
   },
-  "base_server_url": {
-    "dev": "http://192.168.2.117:88",
-    "production": "http://console.xhj.com"
-  }
+  "siteInfo": {
+    "cityId": "1",
+    "cityName": "长沙",
+    "siteName": "象盒科技",
+    "siteDomain": "http://www.xhj.com",
+    "copyRight": "",
+    "icp": "备案：湘ICP备18019481号"
+  },
+  "apiProxy": {
+    "correctBody": {
+      "code": 0,
+      "message": "ok"
+    },
+    "errorBody": {
+      "code": -1,
+      "message": "server error"
+    },
+    "outOfListBody":{
+      "code":-100,
+      "message": "server out"
+    }
+  },
+  "apiList":[
+    "/web/housePrice/area/shopMap/map",
+    "/web/housePrice/stress/map",
+    "/web/housePrice/region/map",
+    "/web/housePrice/findCityLine",
+    "/web/housePrice/findRegionLine",
+    "/web/housePrice/findShopMapLine",
+    "/web/housePrice/area/city",
+    "/web/housePrice/stress/priceUp",
+    "/web/housePrice/stress/priceDown",
+    "/web/region/findByCityId/{cityId}",
+    "/web/shopmap/findByFirstAlp/{regionId}"
+  ]
 }

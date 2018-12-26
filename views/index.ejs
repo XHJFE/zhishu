@@ -90,28 +90,34 @@
         <div class="showbox linkbox">
             <div class="leftbox">
                 <div class="citybox"><img src="../images/icon_location.png" alt="" class="bounce"><span
-                            class="city">长沙</span></div>
+                            class="city"><%= cityInfo.cityname %></span></div>
                 <div class="detailbox">
-                    <p class="info"><span class="month">11月</span><span class="area">雨花区</span>象盒参考均价</p>
+                    <p class="info"><span class="month"><%=new Date(cityInfo.day_time).getMonth()+1%>月</span><span class="area"><%=cityInfo.cityname%></span>象盒参考均价</p>
                     <div class="pricebox">
                         <div class="mj"><span class="num timer count-title" id="count-number" data-to="30000"
-                                              data-speed="1000">20000</span>元/平米
+                                              data-speed="1000"><%= cityInfo.avg_price %></span>元/平米
                         </div>
-                        <div class="sj">环比上月<span class="red">1.2% ↑</span></div>
+                        <div class="sj">环比上月<span class="<%if(cityInfo.ratio>1){%>red<%}else{%>green<%}%>"><%= (Math.abs(1 - cityInfo.ratio)*100).toFixed(2) %>%
+                                <% if(cityInfo.ratio > 1){ %>
+                                ↑
+                                <% }else{ %>
+                                ↓
+                                <% } %>
+                            </span></div>
                     </div>
 
-                    <p class="data">已有75622人查询区域房价</p>
+                    <p class="data">已有<%=cityInfo.view_num%>人查询区域房价</p>
                 </div>
             </div>
             <div class="rightbox">
                 <ul>
                     <li>
                         <p class="title">在售房源</p>
-                        <p class="txt"><span class="num blue">100</span><span class="dw">套</span></p>
+                        <p class="txt"><span class="num blue"><%=cityInfo.house_num_all%></span><span class="dw">套</span></p>
                     </li>
                     <li>
                         <p class="title">今日带看量</p>
-                        <p class="txt"><span class="num">400</span><span class="dw">次</span></p>
+                        <p class="txt"><span class="num"><%=cityInfo.view_num%></span><span class="dw">次</span></p>
                     </li>
                     <li>
                         <p class="title">扫码房屋估价</p>
@@ -119,15 +125,15 @@
                     </li>
                     <li class="noborder">
                         <p class="title">今日新增房源</p>
-                        <p class="txt"><span class="num blue">14</span><span class="dw">套</span></p>
+                        <p class="txt"><span class="num blue"><%=cityInfo.house_num_add%></span><span class="dw">套</span></p>
                     </li>
                     <li class="noborder">
                         <p class="title">今日涨价房源</p>
-                        <p class="txt"><span class="num red">20</span><span class="dw">套</span></p>
+                        <p class="txt"><span class="num red"><%=cityInfo.price_increase%></span><span class="dw">套</span></p>
                     </li>
                     <li class="noborder">
                         <p class="title">今日降价房源</p>
-                        <p class="txt"><span class="num green">20</span><span class="dw">套</span></p>
+                        <p class="txt"><span class="num green"><%=cityInfo.price_reduction%></span><span class="dw">套</span></p>
                     </li>
                 </ul>
             </div>
@@ -136,22 +142,18 @@
 </div>
 <!--房价地图-->
 <div class="mapbox linkbox">
-    <div class="title">长沙市芙蓉区房价地图</div>
-    <div class="content">
-        <img src="../images/img_map.jpg" alt="">
-    </div>
+    <div class="title"><%=cityInfo.cityname%>房价地图</div>
+    <div class="content" id="map_container"></div>
 </div>
 <!--房价走势-->
 <div class="zsbox linkbox">
-    <div class="title">芙蓉区二手房价走势</div>
-    <div class="content">
-        <img src="../images/zs.jpg" alt="">
-    </div>
+    <div class="title"><%=cityInfo.cityname%>二手房价走势</div>
+    <div class="content" id="line_container"></div>
 </div>
 <!--涨幅榜-->
 <div class="zfbox linkbox">
     <div class="zfleft">
-        <div class="title">近1个月芙蓉区房价涨幅榜</div>
+        <div class="title">近1个月<%=cityInfo.cityname%>房价涨幅榜</div>
         <div class="content">
             <div class="namelist">
                 <div class="order">排行</div>
@@ -194,7 +196,7 @@
         </div>
     </div>
     <div class="zfright">
-        <div class="title">近1个月芙蓉区房价降幅榜</div>
+        <div class="title">近1个月<%=cityInfo.cityname%>房价降幅榜</div>
         <div class="content">
             <div class="namelist">
                 <div class="order">排行</div>
@@ -239,7 +241,7 @@
 </div>
 <!--热门小区房价走势-->
 <div class="hotzsbox linkbox">
-    <div class="title">芙蓉区热门小区二手房走势</div>
+    <div class="title"><%=cityInfo.cityname%>热门小区二手房走势</div>
     <div class="content">
         <div class="box clearfix">
             <p class="btitle">

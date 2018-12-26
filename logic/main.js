@@ -1,5 +1,7 @@
 let indexDeal = require('../controller/index');
-let settings = require('../settings.json');
+let apiProxyDeal = require('../controller/apiProxy');
+let config = require('../config.json');
+let settings = config.siteInfo;
 let _ = require('underscore');
 let util = require('../lib/util');
 
@@ -19,6 +21,18 @@ function root(req, res, next) {
     });
 }
 
+/**
+ * 接口代理
+ * @param req
+ * @param res
+ * @param next
+ */
+function apiProxy(req, res, next) {
+    let method = req.method.toLowerCase();
+    apiProxyDeal[method](req, res, next);
+}
+
 module.exports = {
-    root: root
+    root: root,
+    apiProxy: apiProxy
 };

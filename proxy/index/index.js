@@ -1,6 +1,6 @@
 let proxy = require('../base_proxy');
 let util = require('../../lib/util');
-let config = require('../../config.json');
+let config = require('../../config.json').proxy;
 let env = config.env;
 
 /**

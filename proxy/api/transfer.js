@@ -4,13 +4,14 @@ let config = require('../../config.json').proxy;
 let env = config.env;
 
 /**
- * 获取菜单
- * @param cityId 城市ID
+ * get 请求透传
+ * @param opt 参数列表
  * @returns {Promise.<*>}
  */
-async function getMenus(cityId) {
+async function get(opt) {
+    "dev" === env && console.log(config.base_server_url[env] + opt.url);
     let data = await proxy({
-        uri: config.proxy_server_url[env] + '/web/channel/siteChannel/' + cityId,
+        uri: config.base_server_url[env] + opt.url,
         method: 'GET',
         headers: {
             "Content-Type": "application/json;charset=UTF-8",
@@ -21,22 +22,25 @@ async function getMenus(cityId) {
 }
 
 /**
- * 获取城市
+ * post请求透传
+ * @param opt 参数列表
  * @returns {Promise.<*>}
  */
-async function getCity() {
+async function post(opt) {
+    "dev" === env && console.log(config.base_server_url[env] + opt.url);
     let data = await proxy({
-        uri: config.proxy_server_url[env] + '/web/city/findSort',
-        method: 'GET',
+        uri: config.base_server_url[env] + opt.url,
+        method: 'POST',
         headers: {
             "Content-Type": "application/json;charset=UTF-8",
             "Accept": "application/json, text/javascript, */*; q=0.01"
-        }
+        },
+        body: JSON.stringify(opt.params)
     });
     return data;
 }
 
 module.exports = {
-    getMenus: getMenus,
-    getCity: getCity
+    get: get,
+    post: post
 };

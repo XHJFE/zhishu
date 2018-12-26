@@ -1,8 +1,7 @@
 let proxy = require('../proxy/base/header');
 let proxyIndex = require('../proxy/index/index');
 let util = require('../lib/util');
-// let config = require('../config.json');
-let settings = require('../settings.json');
+let settings = require('../config.json').siteInfo;
 
 module.exports = function (params, cb) {
     let cityId = params.cityId || settings.cityId;
