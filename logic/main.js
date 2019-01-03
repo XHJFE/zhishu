@@ -57,7 +57,8 @@ function root(req, res, next) {
             cityUpList: 'array',
             cityDownList: 'array',
             cityInfo: 'array',
-            hotList: 'object'
+            hotList: 'object',
+            viewNum: 'object'
         });
         // 降价房源列表进行倒序排列
         if (data.cityDownList && data.cityDownList.length) {
@@ -65,11 +66,19 @@ function root(req, res, next) {
                 return b.ratio - a.ratio;
             });
         }
-        dumpHotList(data.hotList);
+        // dumpHotList(data.hotList);
         data.tools = tools;
         let areaLineData = getLineDataFromHotList(data.hotList);
-        dumpAreaLineData(areaLineData);
+        // dumpAreaLineData(areaLineData);
         data.hotAreaLineData = JSON.stringify(areaLineData);
+        if (data.viewNum && data.viewNum.status && data.viewNum.status == 200) {
+            data.view_num = data.viewNum.data;
+        }
+        else {
+            data.view_num = 1000;
+        }
+        data.viewNum = null;
+        delete data.viewNum;
         console.log("==============Time Cost==============", stat.get());
         res.render('index', data);
     });

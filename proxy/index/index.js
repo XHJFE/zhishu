@@ -75,9 +75,28 @@ async function getHot(cityId) {
     return data;
 }
 
+/**
+ * 根据城市获取查阅次数
+ * @param cityId
+ * @returns {Promise.<void>}
+ */
+async function getViewNum(cityId) {
+    let data = await proxy({
+        uri: config.base_server_url[env] + '/web/housePrice/record/region/count',
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json;charset=UTF-8",
+            "Accept": "application/json, text/javascript, */*; q=0.01"
+        },
+        body: JSON.stringify({cityId: cityId})
+    });
+    return data;
+}
+
 module.exports = {
     getCityInfo: getCityInfo,
     getUpInfoByCity: getUpInfoByCity,
     getDownInfoByCity: getDownInfoByCity,
-    getHot: getHot
+    getHot: getHot,
+    getViewNum: getViewNum
 };

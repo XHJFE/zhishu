@@ -5,15 +5,16 @@ let settings = require('../config.json').siteInfo;
 
 module.exports = function (params, cb) {
     let cityId = params.cityId || settings.cityId;
-    let keys = ['menus', 'cities', 'cityInfo', 'cityUpList', 'cityDownList', 'hotList'];
+    let keys = ['menus', 'cities', 'cityInfo', 'cityUpList', 'cityDownList', 'hotList', 'viewNum'];
     let menus = proxy.getMenus(cityId);
     let cities = proxy.getCity();
     let cityInfo = proxyIndex.getCityInfo(cityId);
     let cityUpList = proxyIndex.getUpInfoByCity(cityId);
     let cityDownList = proxyIndex.getDownInfoByCity(cityId);
     let hotList = proxyIndex.getHot(cityId);
+    let viewNum = proxyIndex.getViewNum(cityId);
 
-    Promise.all([menus, cities, cityInfo, cityUpList, cityDownList, hotList]).then(function (result) {
+    Promise.all([menus, cities, cityInfo, cityUpList, cityDownList, hotList, viewNum]).then(function (result) {
         cb(util.getResult(keys, result));
     }).catch(function (e) {
         cb(util.getResultError(keys));

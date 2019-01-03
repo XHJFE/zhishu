@@ -80,7 +80,7 @@
                             </span></div>
                     </div>
 
-                    <p class="data">已有<%= cityInfo.view_num %>人查询区域房价</p>
+                    <p class="data">已有<%= view_num %>人查询区域房价</p>
                 </div>
             </div>
             <div class="rightbox">
@@ -219,7 +219,7 @@ if(hotList.hotStress && hotList.hotStress.length){
                     上涨
                     <% }else{ %>
                     下跌
-                    <% } %>
+                    <% } %>&nbsp;
                     <span class="num"><%= tools.getRatioH(ratio) %></span>%</p>
                 <div class="hot_line_container"></div>
             </div>
