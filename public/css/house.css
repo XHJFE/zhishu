@@ -312,12 +312,12 @@ a {
     margin-right: 10px;
 }
 
-.seaarea .houseestate a.active, .seaarea .houseestate .all.active {
+.seaarea .houseestate a.active, .seaarea .houseestate a:hover, .seaarea .houseestate .all.active {
     color: #4285f4;
 }
 
 .houseestate .list a:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .showbox {
@@ -558,7 +558,7 @@ a {
     border-radius: 5px;
     margin-left: 30px;
     position: absolute;
-    left: 320px;
+    left: 370px;
     bottom: 18px;
 }
 
