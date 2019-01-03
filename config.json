@@ -1,6 +1,9 @@
 {
+  "base": {
+  },
   "proxy": {
     "env": "dev",
+    "timeout": 5000,
     "proxy_server_url": {
       "dev": "http://zcms.xhj.com:88",
       "production": "http://console.xhj.com"
@@ -27,22 +30,30 @@
       "code": -1,
       "message": "server error"
     },
-    "outOfListBody":{
-      "code":-100,
+    "outOfListBody": {
+      "code": -100,
       "message": "server out"
     }
   },
-  "apiList":[
-    "/web/housePrice/area/shopMap/map",
+  "apiList": [
+    "/web/housePrice/shopMap/map",
     "/web/housePrice/stress/map",
     "/web/housePrice/region/map",
+    "/web/housePrice/record/region/search",
     "/web/housePrice/findCityLine",
     "/web/housePrice/findRegionLine",
     "/web/housePrice/findShopMapLine",
     "/web/housePrice/area/city",
     "/web/housePrice/stress/priceUp",
     "/web/housePrice/stress/priceDown",
+    "/web/housePrice/area/city",
+    "/web/housePrice/area/region",
+    "/web/housePrice/area/shopMap",
+    "/web/housePrice/record/region/count",
+    "/web/housePrice/record/save",
+    "/web/housePrice/stress/hot",
     "/web/region/findByCityId/{cityId}",
-    "/web/shopmap/findByFirstAlp/{regionId}"
+    "/web/shopmap/findByFirstAlp/{regionId}",
+    "/web/city/findById/{cityId}"
   ]
 }

@@ -7,7 +7,10 @@
     <title>区域房价</title>
     <link rel="stylesheet" href="../css/header.css">
     <link rel="stylesheet" href="../css/house.css">
+    <script type="text/javascript"
+            src="http://api.map.baidu.com/api?v=3.0&ak=mGIVfCq3HtLt0aOqYO9tgWdpszLmBk1G"></script>
     <% include include/cssjs %>
+    <script>var hotAreaLineData = "<%= hotAreaLineData %>";</script>
 </head>
 <body>
 <% include include/header %>
@@ -48,42 +51,10 @@
                     <img src="../images/icon_search.png" alt="">
                 </div>
             </div>
-            <div class="seaarea dn">
-
-                <div class="regionwrap clearfix">
-                    <a href="" class="allcity">全市</a>
-                    <div class="arealist">
-                        <a href="">芙蓉区</a>
-                        <a href="">开福区</a>
-                    </div>
-                </div>
-                <div class="houseestate">
-                    <div class="dn">
-                        <a href="" class="all">查看全部<span class="area">芙蓉区</span></a>
-                        <div class="list clearfix">
-                            <a href="">芙蓉区1</a>
-                            <a href="">芙蓉区2</a>
-                            <a href="">芙蓉区3</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="houseestate">
-                    <div class="dn">
-                        <a href="" class="all">查看全部<span class="area">开福区</span></a>
-                        <div class="list clearfix">
-                            <a href="">开福区1</a>
-                            <a href="">开福区2</a>
-                            <a href="">开福区3</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <div class="seaarea dn" id="allCityInfo"></div>
             <!--模糊匹配-->
             <div class="seamh" style="display:none;">
-                <ul class="list">
-                    <li><span class="txt"><i class="cur">南山</i></span> <span class="area">区域</span></li>
-                    <li><span class="txt"><i class="cur">南山</i>中心圈</span> <span class="area">商圈</span></li>
-                </ul>
+                <ul class="list"></ul>
             </div>
         </div>
         <!--内容-->
@@ -92,12 +63,15 @@
                 <div class="citybox"><img src="../images/icon_location.png" alt="" class="bounce"><span
                             class="city"><%= cityInfo.cityname %></span></div>
                 <div class="detailbox">
-                    <p class="info"><span class="month"><%=new Date(cityInfo.day_time).getMonth()+1%>月</span><span class="area"><%=cityInfo.cityname%></span>象盒参考均价</p>
+                    <p class="info"><span class="month"><%= new Date(cityInfo.day_time).getMonth() + 1 %>月</span><span
+                                class="area"><%= cityInfo.cityname %></span>象盒参考均价</p>
                     <div class="pricebox">
                         <div class="mj"><span class="num timer count-title" id="count-number" data-to="30000"
                                               data-speed="1000"><%= cityInfo.avg_price %></span>元/平米
                         </div>
-                        <div class="sj">环比上月<span class="<%if(cityInfo.ratio>1){%>red<%}else{%>green<%}%>"><%= (Math.abs(1 - cityInfo.ratio)*100).toFixed(2) %>%
+                        <div class="sj">环比上月<span
+                                    class="<% if(cityInfo.ratio > 1){ %>red<% }else{ %>green<% } %>"><%= (Math.abs(1 - cityInfo.ratio) * 100).toFixed(2) %>
+                                %
                                 <% if(cityInfo.ratio > 1){ %>
                                 ↑
                                 <% }else{ %>
@@ -106,18 +80,19 @@
                             </span></div>
                     </div>
 
-                    <p class="data">已有<%=cityInfo.view_num%>人查询区域房价</p>
+                    <p class="data">已有<%= cityInfo.view_num %>人查询区域房价</p>
                 </div>
             </div>
             <div class="rightbox">
                 <ul>
                     <li>
                         <p class="title">在售房源</p>
-                        <p class="txt"><span class="num blue"><%=cityInfo.house_num_all%></span><span class="dw">套</span></p>
+                        <p class="txt"><span class="num blue zs"><%= cityInfo.house_num_all %></span><span
+                                    class="dw">套</span></p>
                     </li>
                     <li>
                         <p class="title">今日带看量</p>
-                        <p class="txt"><span class="num"><%=cityInfo.view_num%></span><span class="dw">次</span></p>
+                        <p class="txt"><span class="num dk"><%= cityInfo.view_num %></span><span class="dw">次</span></p>
                     </li>
                     <li>
                         <p class="title">扫码房屋估价</p>
@@ -125,15 +100,18 @@
                     </li>
                     <li class="noborder">
                         <p class="title">今日新增房源</p>
-                        <p class="txt"><span class="num blue"><%=cityInfo.house_num_add%></span><span class="dw">套</span></p>
+                        <p class="txt"><span class="num blue xz"><%= cityInfo.house_num_add %></span><span
+                                    class="dw">套</span></p>
                     </li>
                     <li class="noborder">
                         <p class="title">今日涨价房源</p>
-                        <p class="txt"><span class="num red"><%=cityInfo.price_increase%></span><span class="dw">套</span></p>
+                        <p class="txt"><span class="num red zj"><%= cityInfo.price_increase %></span><span
+                                    class="dw">套</span></p>
                     </li>
                     <li class="noborder">
                         <p class="title">今日降价房源</p>
-                        <p class="txt"><span class="num green"><%=cityInfo.price_reduction%></span><span class="dw">套</span></p>
+                        <p class="txt"><span class="num green jj"><%= cityInfo.price_reduction %></span><span
+                                    class="dw">套</span></p>
                     </li>
                 </ul>
             </div>
@@ -142,18 +120,22 @@
 </div>
 <!--房价地图-->
 <div class="mapbox linkbox">
-    <div class="title"><%=cityInfo.cityname%>房价地图</div>
-    <div class="content" id="map_container"></div>
+    <div class="title map_title"><%= cityInfo.cityname %>房价地图</div>
+    <div class="content" id="map_container">
+        <div class="placeholder">正在生成地图，请稍后...</div>
+    </div>
 </div>
 <!--房价走势-->
 <div class="zsbox linkbox">
-    <div class="title"><%=cityInfo.cityname%>二手房价走势</div>
-    <div class="content" id="line_container"></div>
+    <div class="title line_title"><%= cityInfo.cityname %>二手房价走势</div>
+    <div class="content" id="line_container">
+        <div class="placeholder">正在生成走势图，请稍后...</div>
+    </div>
 </div>
 <!--涨幅榜-->
 <div class="zfbox linkbox">
     <div class="zfleft">
-        <div class="title">近1个月<%=cityInfo.cityname%>房价涨幅榜</div>
+        <div class="title zf_title">近1个月<%= cityInfo.cityname %>房价涨幅榜</div>
         <div class="content">
             <div class="namelist">
                 <div class="order">排行</div>
@@ -161,42 +143,28 @@
                 <div class="price">小区均价</div>
                 <div class="zf">涨幅</div>
             </div>
-            <ul class="list">
+            <ul class="list" id="up_list">
+                <%
+                cityUpList.map(function (upItem, index) {
+                %>
                 <li>
-                    <div class="order"><span class="redcolor">1</span></div>
-                    <div class="name">鄱阳小区</div>
-                    <div class="price">8265元/㎡</div>
-                    <div class="zf">8.2% ↑</div>
+                    <div class="order"><span
+                                <% if(index < 3){ %>
+                                class="redcolor"
+                                <% } %>
+                        ><%= index + 1 %></span></div>
+                    <div class="name"><a
+                                href="<%= siteDomain %>/xiaoqu/<%= upItem._id %>.html"><%= upItem.lpname %></a>
+                    </div>
+                    <div class="price"><%= upItem.avg_price %>元/㎡</div>
+                    <div class="zf"><%= (upItem.ratio - 0).toFixed(2) %>% ↑</div>
                 </li>
-                <li>
-                    <div class="order"><span class="redcolor">2</span></div>
-                    <div class="name">鄱阳小区发大水发沙发沙发上阿范德萨发生</div>
-                    <div class="price">8265元/㎡</div>
-                    <div class="zf">8.2% ↑</div>
-                </li>
-                <li>
-                    <div class="order"><span class="redcolor">3</span></div>
-                    <div class="name">鄱阳小区</div>
-                    <div class="price">8265元/㎡</div>
-                    <div class="zf">8.2% ↑</div>
-                </li>
-                <li>
-                    <div class="order"><span>4</span></div>
-                    <div class="name">鄱阳小区</div>
-                    <div class="price">8265元/㎡</div>
-                    <div class="zf">8.2% ↑</div>
-                </li>
-                <li>
-                    <div class="order"><span>5</span></div>
-                    <div class="name">鄱阳小区</div>
-                    <div class="price">8265元/㎡</div>
-                    <div class="zf">8.2% ↑</div>
-                </li>
+                <% }); %>
             </ul>
         </div>
     </div>
     <div class="zfright">
-        <div class="title">近1个月<%=cityInfo.cityname%>房价降幅榜</div>
+        <div class="title jf_title">近1个月<%= cityInfo.cityname %>房价降幅榜</div>
         <div class="content">
             <div class="namelist">
                 <div class="order">排行</div>
@@ -204,85 +172,79 @@
                 <div class="price">小区均价</div>
                 <div class="zf">涨幅</div>
             </div>
-            <ul class="list">
+            <ul class="list" id="down_list">
+                <%
+                cityDownList.map(function (upItem, index) {
+                %>
                 <li>
-                    <div class="order"><span class="greencolor">1</span></div>
-                    <div class="name">鄱阳小区</div>
-                    <div class="price">8265元/㎡</div>
-                    <div class="jf">8.2% ↓</div>
+                    <div class="order"><span
+                                <% if(index < 3){ %>
+                                class="redcolor"
+                                <% } %>
+                        ><%= index + 1 %></span></div>
+                    <div class="name"><a
+                                href="<%= siteDomain %>/xiaoqu/<%= upItem._id %>.html"><%= upItem.lpname %></a>
+                    </div>
+                    <div class="price"><%= upItem.avg_price %>元/㎡</div>
+                    <div class="jf"><%= (upItem.ratio - 0).toFixed(2) %>% ↓</div>
                 </li>
-                <li>
-                    <div class="order"><span class="greencolor">2</span></div>
-                    <div class="name">鄱阳小区发大水发沙发沙发上阿范德萨发生</div>
-                    <div class="price">8265元/㎡</div>
-                    <div class="jf">8.2% ↓</div>
-                </li>
-                <li>
-                    <div class="order"><span class="greencolor">3</span></div>
-                    <div class="name">鄱阳小区</div>
-                    <div class="price">8265元/㎡</div>
-                    <div class="jf">8.2% ↓</div>
-                </li>
-                <li>
-                    <div class="order"><span>4</span></div>
-                    <div class="name">鄱阳小区</div>
-                    <div class="price">8265元/㎡</div>
-                    <div class="jf">8.2% ↓</div>
-                </li>
-                <li>
-                    <div class="order"><span>5</span></div>
-                    <div class="name">鄱阳小区</div>
-                    <div class="price">8265元/㎡</div>
-                    <div class="jf">8.2% ↑</div>
-                </li>
+                <% }); %>
             </ul>
         </div>
     </div>
 </div>
+<%
+if(hotList.hotStress && hotList.hotStress.length){
+%>
 <!--热门小区房价走势-->
 <div class="hotzsbox linkbox">
-    <div class="title"><%=cityInfo.cityname%>热门小区二手房走势</div>
+    <div class="title hot_title"><%= cityInfo.cityname %>热门小区二手房走势</div>
     <div class="content">
+        <%
+        hotList.hotStress && hotList.hotStress.map(function (hotStress, hotStressIndex) {
+            let stressInfo = hotStress[0];
+            let ratio = hotStress[1].avg_price > 0 ? stressInfo.avg_price / hotStress[1].avg_price : 0;
+        %>
         <div class="box clearfix">
             <p class="btitle">
-                <span class="name">鄱阳小区</span>
-                <span class="address"><img src="../images/icon_slocation.png" alt="">芙蓉区  五一大道</span>
+                <span class="name"><%= stressInfo.lp_name %></span>
+                <span class="address"><img src="../images/icon_slocation.png" alt=""><%= stressInfo.qyname %>&nbsp;&nbsp;<%= stressInfo.sqname %></span>
             </p>
             <div class="hotleft">
-                <p class="state">11月二手房均价 <span class="num">8794</span>元/㎡ ，环比上月上涨 <span class="num">0.94</span>%</p>
-                <img src="../images/small_zs.jpg" alt="">
+                <p class="state"><%= stressInfo.month %>月二手房均价 <span
+                            class="num"><%= stressInfo.avg_price %></span>元/㎡
+                    ，环比上月
+                    <% if(ratio > 1){ %>
+                    上涨
+                    <% }else{ %>
+                    下跌
+                    <% } %>
+                    <span class="num"><%= tools.getRatioH(ratio) %></span>%</p>
+                <div class="hot_line_container"></div>
             </div>
             <div class="hotright">
-                <a href="">
-                    <span class="price">180万</span>
-                    <div class="imgbox"><img src="../images/img.png" alt=""></div>
-                    <p class="txt">奥拉夫科技阿凡达克拉发大水发是非得失数据发类似看法点击萨拉</p>
-                    <p><span class="jg">3室2厅1卫</span> <span class="mj">138㎡</span></p>
+                <%
+                    let houseInfo = hotList.hotHouse[hotStressIndex];
+                houseInfo.map(function (house) {
+                %>
+                <a href="<%= siteDomain %>/ershoufang/<%= house.hsmid %>.html">
+                    <span class="price"><%= house.totalPrice %>万</span>
+                    <div class="imgbox"><img src="<%= house.thumb %>" width="203" height="135" alt="<%= house.title %>">
+                    </div>
+                    <p class="txt"><%= house.title %></p>
+                    <p><span class="jg"><%= house.roomNumber %>室<%= house.hallNumber %>厅<%= house.toiletNumber %>
+                            卫</span> <span class="mj"><%= house.area %>㎡</span></p>
                 </a>
-                <a href="">
-                    <span class="price">180万</span>
-                    <div class="imgbox"><img src="../images/img.png" alt=""></div>
-                    <p class="txt">奥拉夫科技阿凡达克拉发大水发是非得失数据发类似看法点击萨拉</p>
-                    <p><span class="jg">3室2厅1卫</span> <span class="mj">138㎡</span></p>
-                </a>
-                <a href="">
-                    <span class="price">180万</span>
-                    <div class="imgbox"><img src="../images/img.png" alt=""></div>
-                    <p class="txt">奥拉夫科技阿凡达克拉发大水发是非得失数据发类似看法点击萨拉</p>
-                    <p><span class="jg">3室2厅1卫</span> <span class="mj">138㎡</span></p>
-                </a>
-                <a href="">
-                    <span class="price">180万</span>
-                    <div class="imgbox"><img src="../images/img.png" alt=""></div>
-                    <p class="txt">奥拉夫科技阿凡达克拉发大水发是非得失数据发类似看法点击萨拉</p>
-                    <p><span class="jg">3室2厅1卫</span> <span class="mj">138㎡</span></p>
-                </a>
-
+                <% }); %>
             </div>
         </div>
-        <a href="" class="more">查看更多资源</a>
+        <% }); %>
     </div>
+    <a href="javascript:;" class="more">查看更多资源</a>
 </div>
+<% } %>
+
+<%include include/footer%>
 <script>require(['pc_zhishu']);</script>
 </body>
 </html>
