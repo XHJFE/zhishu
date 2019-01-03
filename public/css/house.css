@@ -963,6 +963,7 @@ a {
 
 .hotzsbox .hotright {
     float: left;
+    min-height: 203px;
 }
 
 .hotright {
