@@ -207,7 +207,8 @@ if(hotList.hotStress && hotList.hotStress.length){
         %>
         <div class="box clearfix">
             <p class="btitle">
-                <span class="name"><%= stressInfo.lp_name %></span>
+                <span class="name"><a
+                            href="<%= siteDomain %>/xiaoqu/<%= stressInfo.lpid %>.html"><%= stressInfo.lp_name %></a></span>
                 <span class="address"><img src="../images/icon_slocation.png" alt=""><%= stressInfo.qyname %>&nbsp;&nbsp;<%= stressInfo.sqname %></span>
             </p>
             <div class="hotleft">
@@ -244,7 +245,7 @@ if(hotList.hotStress && hotList.hotStress.length){
 </div>
 <% } %>
 
-<%include include/footer%>
+<% include include/footer %>
 <script>require(['pc_zhishu']);</script>
 </body>
 </html>
