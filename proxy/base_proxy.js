@@ -6,6 +6,9 @@ let log = log4js.getLogger('proxy');
 
 module.exports = function (opt) {
     !opt.timeout && (opt.timeout = config.timeout);
+    if (opt.uri) {
+        opt.uri += (opt.uri.indexOf('?') > -1 ? '&t=' : '?t=') + new Date().getTime();
+    }
     return new Promise(function (resolve, reject) {
         request(opt, function (err, response, body) {
             if (err) {
