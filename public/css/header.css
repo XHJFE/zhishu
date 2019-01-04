@@ -391,9 +391,13 @@ i {
     cursor: pointer;
 }
 
+.narbar {
+    max-width: 990px;
+}
+
 .narbar > ul > li > a {
     display: inline-block;
-    padding: 0px 12px;
+    padding: 0px 10px;
     height: 65px;
     color: #000334;
     line-height: 65px;
@@ -411,7 +415,7 @@ i {
 }
 
 .narbar > ul {
-    max-width: 950px;
+    max-width: 990px;
 }
 
 .narbar > ul > li > a:hover {
