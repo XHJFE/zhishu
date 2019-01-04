@@ -88,7 +88,7 @@ async function getViewNum(cityId) {
             "Content-Type": "application/json;charset=UTF-8",
             "Accept": "application/json, text/javascript, */*; q=0.01"
         },
-        body: JSON.stringify({cityId: cityId})
+        body: JSON.stringify({cityId: cityId, type: "CITY"})
     });
     return data;
 }
