@@ -82,7 +82,7 @@ async function getHot(cityId) {
  */
 async function getViewNum(cityId) {
     let data = await proxy({
-        uri: config.base_server_url[env] + '/web/housePrice/record/region/count',
+        uri: config.base_server_url[env] + '/web/housePrice/record/region/findCount',
         method: 'POST',
         headers: {
             "Content-Type": "application/json;charset=UTF-8",
