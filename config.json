@@ -33,6 +33,10 @@
     "outOfListBody": {
       "code": -100,
       "message": "server out"
+    },
+    "paramError": {
+      "code": -101,
+      "message": "params error."
     }
   },
   "apiList": [

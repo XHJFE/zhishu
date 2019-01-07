@@ -1,5 +1,6 @@
 let indexDeal = require('../controller/index');
 let apiProxyDeal = require('../controller/apiProxy');
+let combProxyDeal = require('../controller/comb');
 let config = require('../config.json');
 let settings = config.siteInfo;
 let _ = require('underscore');
@@ -95,7 +96,19 @@ function apiProxy(req, res, next) {
     apiProxyDeal[method](req, res, next);
 }
 
+/**
+ * 合并请求
+ * @param req
+ * @param res
+ * @param next
+ */
+function apiComb(req, res, next) {
+    let method = req.method.toLowerCase();
+    combProxyDeal[method](req, res, next);
+}
+
 module.exports = {
     root: root,
-    apiProxy: apiProxy
+    apiProxy: apiProxy,
+    apiComb: apiComb
 };

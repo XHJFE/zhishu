@@ -81,5 +81,6 @@ function post(req, res, next) {
 
 module.exports = {
     get: get,
-    post: post
+    post: post,
+    checkUrl: checkUrl
 };

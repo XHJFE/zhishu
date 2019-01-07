@@ -324,6 +324,22 @@ a {
     margin-top: 25px;
     overflow: hidden;
     box-shadow: 2px 2px 5px #d3d3d3;
+    position:relative;
+}
+.showbox .nodatabox{
+    position: absolute;
+    display: none;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    background: #fff;
+    color: #333;
+    text-align: center;
+    z-index: 1;
+    font-size: 18px;
+    padding-top: 140px;
+    border-radius: 0;
 }
 
 .showbox .leftbox {
