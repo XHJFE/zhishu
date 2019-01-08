@@ -12,10 +12,7 @@ async function getMenus(cityId) {
     let data = await proxy({
         uri: config.proxy_server_url[env] + '/web/channel/siteChannel/' + cityId,
         method: 'GET',
-        headers: {
-            "Content-Type": "application/json;charset=UTF-8",
-            "Accept": "application/json, text/javascript, */*; q=0.01"
-        }
+        headers: config.headers
     });
     return data;
 }
@@ -28,10 +25,7 @@ async function getCity() {
     let data = await proxy({
         uri: config.proxy_server_url[env] + '/web/city/findSort',
         method: 'GET',
-        headers: {
-            "Content-Type": "application/json;charset=UTF-8",
-            "Accept": "application/json, text/javascript, */*; q=0.01"
-        }
+        headers: config.headers
     });
     return data;
 }

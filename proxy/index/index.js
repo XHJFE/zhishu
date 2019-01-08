@@ -12,10 +12,7 @@ async function getCityInfo(cityId) {
     let data = await proxy({
         uri: config.base_server_url[env] + '/web/housePrice/area/city',
         method: 'POST',
-        headers: {
-            "Content-Type": "application/json;charset=UTF-8",
-            "Accept": "application/json, text/javascript, */*; q=0.01"
-        },
+        headers: config.headers,
         body: JSON.stringify({cityId: cityId})
     });
     return data;
@@ -30,10 +27,7 @@ async function getUpInfoByCity(cityId) {
     let data = await proxy({
         uri: config.base_server_url[env] + '/web/housePrice/stress/priceUp',
         method: 'POST',
-        headers: {
-            "Content-Type": "application/json;charset=UTF-8",
-            "Accept": "application/json, text/javascript, */*; q=0.01"
-        },
+        headers: config.headers,
         body: JSON.stringify({cityId: cityId})
     });
     return data;
@@ -48,10 +42,7 @@ async function getDownInfoByCity(cityId) {
     let data = await proxy({
         uri: config.base_server_url[env] + '/web/housePrice/stress/priceDown',
         method: 'POST',
-        headers: {
-            "Content-Type": "application/json;charset=UTF-8",
-            "Accept": "application/json, text/javascript, */*; q=0.01"
-        },
+        headers: config.headers,
         body: JSON.stringify({cityId: cityId})
     });
     return data;
@@ -66,10 +57,7 @@ async function getHot(cityId) {
     let data = await proxy({
         uri: config.base_server_url[env] + '/web/housePrice/stress/hot',
         method: 'POST',
-        headers: {
-            "Content-Type": "application/json;charset=UTF-8",
-            "Accept": "application/json, text/javascript, */*; q=0.01"
-        },
+        headers: config.headers,
         body: JSON.stringify({cityId: cityId})
     });
     return data;
@@ -84,10 +72,7 @@ async function getViewNum(cityId) {
     let data = await proxy({
         uri: config.base_server_url[env] + '/web/housePrice/record/region/findCount',
         method: 'POST',
-        headers: {
-            "Content-Type": "application/json;charset=UTF-8",
-            "Accept": "application/json, text/javascript, */*; q=0.01"
-        },
+        headers: config.headers,
         body: JSON.stringify({cityId: cityId, type: "CITY"})
     });
     return data;

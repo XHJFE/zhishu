@@ -13,10 +13,7 @@ async function get(opt) {
     let data = await proxy({
         uri: config.base_server_url[env] + opt.url,
         method: 'GET',
-        headers: {
-            "Content-Type": "application/json;charset=UTF-8",
-            "Accept": "application/json, text/javascript, */*; q=0.01"
-        }
+        headers: config.headers
     });
     return data;
 }
@@ -31,10 +28,7 @@ async function post(opt) {
     let data = await proxy({
         uri: config.base_server_url[env] + opt.url,
         method: 'POST',
-        headers: {
-            "Content-Type": "application/json;charset=UTF-8",
-            "Accept": "application/json, text/javascript, */*; q=0.01"
-        },
+        headers: config.headers,
         body: JSON.stringify(opt.params)
     });
     return data;

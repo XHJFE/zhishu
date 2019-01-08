@@ -12,10 +12,7 @@ async function getLineByCity(cityId) {
     let data = await proxy({
         uri: config.base_server_url[env] + '/web/housePrice/findCityLine',
         method: 'POST',
-        headers: {
-            "Content-Type": "application/json;charset=UTF-8",
-            "Accept": "application/json, text/javascript, */*; q=0.01"
-        },
+        headers: config.headers,
         body: JSON.stringify({cityId: cityId})
     });
     return data;
@@ -31,10 +28,7 @@ async function getLineByRegion(cityId, regionId) {
     let data = await proxy({
         uri: config.base_server_url[env] + '/web/housePrice/findRegionLine',
         method: 'POST',
-        headers: {
-            "Content-Type": "application/json;charset=UTF-8",
-            "Accept": "application/json, text/javascript, */*; q=0.01"
-        },
+        headers: config.headers,
         body: JSON.stringify({cityId: cityId, regionId: regionId})
     });
     return data;
@@ -50,10 +44,7 @@ async function getLineByShop(cityId, shopMapId) {
     let data = await proxy({
         uri: config.base_server_url[env] + '/web/housePrice/findShopMapLine',
         method: 'POST',
-        headers: {
-            "Content-Type": "application/json;charset=UTF-8",
-            "Accept": "application/json, text/javascript, */*; q=0.01"
-        },
+        headers: config.headers,
         body: JSON.stringify({cityId: cityId, shopMapId: shopMapId})
     });
     return data;

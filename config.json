@@ -11,6 +11,10 @@
     "base_server_url": {
       "dev": "http://192.168.2.117:88",
       "production": "http://console.xhj.com"
+    },
+    "headers": {
+      "Content-Type": "application/json;charset=UTF-8",
+      "Accept": "application/json, text/javascript, */*; q=0.01"
     }
   },
   "siteInfo": {
