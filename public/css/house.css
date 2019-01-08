@@ -966,6 +966,12 @@ a {
     position: absolute;
     right: 0px;
 }
+.hotzsbox .box .btitle .more_link a:visited, .hotzsbox .box .btitle .more_link a:link{
+    color:#898989;
+}
+.hotzsbox .box .btitle .more_link a:hover{
+    color:#448aca;
+}
 
 .hotzsbox .address img {
     vertical-align: middle;
