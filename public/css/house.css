@@ -324,9 +324,10 @@ a {
     margin-top: 25px;
     overflow: hidden;
     box-shadow: 2px 2px 5px #d3d3d3;
-    position:relative;
+    position: relative;
 }
-.showbox .nodatabox{
+
+.showbox .nodatabox {
     position: absolute;
     display: none;
     left: 0;
@@ -943,6 +944,7 @@ a {
 }
 
 .hotzsbox .box .btitle {
+    position: relative;
     border-bottom: 1px solid #bfbfbf;
     padding-bottom: 10px;
     margin-bottom: 20px;
@@ -958,6 +960,11 @@ a {
 
 .hotzsbox .btitle .address {
     color: #898989;
+}
+
+.hotzsbox .box .btitle .more {
+    position: absolute;
+    right: 0px;
 }
 
 .hotzsbox .address img {
