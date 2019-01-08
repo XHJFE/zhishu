@@ -209,8 +209,10 @@ a {
 }
 
 .seamh {
+    position: absolute;
     background: #fff;
     width: 692px;
+    z-index: 1;
 }
 
 .seamh li {
