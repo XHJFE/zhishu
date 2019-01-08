@@ -5,8 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>区域房价</title>
-    <link rel="stylesheet" href="/css/header.css">
-    <link rel="stylesheet" href="/css/house.css">
+    <link rel="stylesheet" href="<%=root[env]%>css/house.css">
     <script type="text/javascript"
             src="http://api.map.baidu.com/api?v=3.0&ak=mGIVfCq3HtLt0aOqYO9tgWdpszLmBk1G"></script>
     <% include include/cssjs %>
@@ -35,10 +34,10 @@
         </div>
         <div class="codebox clearfix">
             <div class="title">
-                <img src="../images/icon_phone.png" alt="" class="phone"><span>下载象盒找房APP</span>
+                <img src="<%= root[env] %>images/icon_phone.png" alt="" class="phone"><span>下载象盒找房APP</span>
             </div>
             <div class="codecon">
-                <img src="../images/img_bcode.png" alt="">
+                <img src="<%= root[env] %>images/img_bcode.png" alt="">
                 <p class="txt1 ">象盒找房APP</p>
                 <p class="txt2">找房·真·简单</p>
             </div>
@@ -48,7 +47,7 @@
             <div class="seacon">
                 <input class="keywords" type="text" value="" autocomplete="off" placeholder="请输入区域或商圈名查询房价">
                 <div class="btn-search">
-                    <img src="../images/icon_search.png" alt="">
+                    <img src="<%= root[env] %>images/icon_search.png" alt="">
                 </div>
             </div>
             <div class="seaarea dn" id="allCityInfo"></div>
@@ -61,7 +60,7 @@
         <div class="showbox linkbox">
             <div class="nodatabox">暂无数据</div>
             <div class="leftbox">
-                <div class="citybox"><img src="../images/icon_location.png" alt="" class="bounce"><span
+                <div class="citybox"><img src="<%= root[env] %>images/icon_location.png" alt="" class="bounce"><span
                             class="city"><%= tools.getPro(cityInfo, "cityname") %></span></div>
                 <div class="detailbox">
                     <p class="info"><span class="month"><%= new Date(cityInfo.day_time).getMonth() + 1 %>月</span><span
@@ -102,7 +101,7 @@
                     </li>
                     <li>
                         <p class="title">扫码房屋估价</p>
-                        <p><img src="../images/img_code.png" alt=""></p>
+                        <p><img src="<%= root[env] %>images/img_code.png" alt=""></p>
                     </li>
                     <li class="noborder">
                         <p class="title">今日新增房源</p>
@@ -218,7 +217,7 @@ if(hotList.hotStress && hotList.hotStress.length){
             <p class="btitle">
                 <span class="name"><a
                             href="<%= siteDomain %>/xiaoqu/<%= stressInfo.lpid %>.html" target="_blank"><%= stressInfo.lp_name %></a></span>
-                <span class="address"><img src="../images/icon_slocation.png" alt=""><%= stressInfo.qyname %>&nbsp;&nbsp;<%= stressInfo.sqname %></span>
+                <span class="address"><img src="<%= root[env] %>images/icon_slocation.png" alt=""><%= stressInfo.qyname %>&nbsp;&nbsp;<%= stressInfo.sqname %></span>
                 <span class="more_link"><a href="<%= siteDomain %>/xiaoqu/esf/<%= stressInfo.lpid %>/" target="_blank">更多>></a></span>
             </p>
             <div class="hotleft">

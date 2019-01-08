@@ -1,6 +1,8 @@
+<link rel="stylesheet" href="<%= root[env] %>css/header.css">
 <link rel="dns-prefetch" href="https://xhjcom.oss-cn-shenzhen.aliyuncs.com">
 <script src="https://xhjcom.oss-cn-shenzhen.aliyuncs.com/dist/r.js"></script>
 <script>
+    var root = "<%= root[env] %>";
     require.config({
         baseUrl: 'http://192.168.1.82:3000/modules/',
 //        baseUrl: 'https://cdnsz.xhj.com/dist/',

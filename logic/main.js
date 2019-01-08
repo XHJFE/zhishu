@@ -3,6 +3,7 @@ let apiProxyDeal = require('../controller/apiProxy');
 let combProxyDeal = require('../controller/comb');
 let config = require('../config.json');
 let settings = config.siteInfo;
+let baseInfo = config.base;
 let _ = require('underscore');
 let util = require('../lib/util');
 let dump = require('../lib/dump');
@@ -50,7 +51,7 @@ function root(req, res, next) {
     let cityId = req.cookies.siteid || settings.cityId;
     let stat = new util.statTimeCost();
     indexDeal({cityId: cityId}, function (d) {
-        let data = _.extend({}, settings, d);
+        let data = _.extend({}, settings, d, baseInfo);
         // 类型检查型判空重置
         util.resetDataByMap(data, {
             menus: 'array',

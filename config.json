@@ -1,8 +1,12 @@
 {
   "base": {
+    "env": "dev",
+    "root": {
+      "dev": "/",
+      "production": "/fangjia/"
+    }
   },
   "proxy": {
-    "env": "dev",
     "timeout": 5000,
     "proxy_server_url": {
       "dev": "http://zcms.xhj.com:88",

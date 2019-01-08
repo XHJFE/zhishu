@@ -1,7 +1,8 @@
 let proxy = require('../base_proxy');
 let util = require('../../lib/util');
-let config = require('../../config.json').proxy;
-let env = config.env;
+let configOpt = require('../../config.json');
+let config = configOpt.proxy;
+let env = configOpt.base.env;
 
 /**
  * 获取城市折线数据
