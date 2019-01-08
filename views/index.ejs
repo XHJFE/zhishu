@@ -67,8 +67,9 @@
                     <p class="info"><span class="month"><%= new Date(cityInfo.day_time).getMonth() + 1 %>月</span><span
                                 class="area"><%= tools.getPro(cityInfo, "cityname") %></span>象盒参考均价</p>
                     <div class="pricebox">
-                        <div class="mj"><span class="num timer count-title" id="count-number" data-to="30000"
-                                              data-speed="1000"><%= tools.getPro(cityInfo, "avg_price") %></span>元/平米
+                        <div class="mj"><span class="num timer count-title" id="count-number"
+                                              data-to="<%= tools.getPro(cityInfo, "avg_price") %>"
+                            ><%= tools.getPro(cityInfo, "avg_price") %></span>元/平米
                         </div>
                         <% if(tools.getPro(cityInfo, "ratio") !== ''){ %>
                         <div class="sj">环比上月<span
