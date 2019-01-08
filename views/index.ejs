@@ -163,7 +163,7 @@
                                 <% } %>
                         ><%= index + 1 %></span></div>
                     <div class="name"><a
-                                href="<%= siteDomain %>/xiaoqu/<%= upItem.lpid %>.html"><%= upItem.lpname %></a>
+                                href="<%= siteDomain %>/xiaoqu/<%= upItem.lpid %>.html" target="_blank"><%= upItem.lpname %></a>
                     </div>
                     <div class="price"><%= upItem.avg_price %>元/㎡</div>
                     <div class="zf"><%= (upItem.ratio - 0).toFixed(2) %>% ↑</div>
@@ -192,7 +192,7 @@
                                 <% } %>
                         ><%= index + 1 %></span></div>
                     <div class="name"><a
-                                href="<%= siteDomain %>/xiaoqu/<%= upItem.lpid %>.html"><%= upItem.lpname %></a>
+                                href="<%= siteDomain %>/xiaoqu/<%= upItem.lpid %>.html" target="_blank"><%= upItem.lpname %></a>
                     </div>
                     <div class="price"><%= upItem.avg_price %>元/㎡</div>
                     <div class="jf"><%= (upItem.ratio - 0).toFixed(2) %>% ↓</div>
@@ -217,9 +217,9 @@ if(hotList.hotStress && hotList.hotStress.length){
         <div class="box clearfix">
             <p class="btitle">
                 <span class="name"><a
-                            href="<%= siteDomain %>/xiaoqu/<%= stressInfo.lpid %>.html"><%= stressInfo.lp_name %></a></span>
+                            href="<%= siteDomain %>/xiaoqu/<%= stressInfo.lpid %>.html" target="_blank"><%= stressInfo.lp_name %></a></span>
                 <span class="address"><img src="../images/icon_slocation.png" alt=""><%= stressInfo.qyname %>&nbsp;&nbsp;<%= stressInfo.sqname %></span>
-                <span class="more_link"><a href="<%= siteDomain %>/xiaoqu/esf/<%= stressInfo.lpid %>/">更多>></a></span>
+                <span class="more_link"><a href="<%= siteDomain %>/xiaoqu/esf/<%= stressInfo.lpid %>/" target="_blank">更多>></a></span>
             </p>
             <div class="hotleft">
                 <p class="state"><%= stressInfo.month %>月二手房均价 <span
@@ -239,7 +239,7 @@ if(hotList.hotStress && hotList.hotStress.length){
                     let houseInfo = hotList.hotHouse[hotStressIndex];
                 houseInfo.map(function (house) {
                 %>
-                <a href="<%= siteDomain %>/ershoufang/<%= house.hsmid %>.html">
+                <a href="<%= siteDomain %>/ershoufang/<%= house.hsmid %>.html" target="_blank">
                     <span class="price"><%= house.totalPrice %>万</span>
                     <div class="imgbox"><img src="<%= house.thumb %>" width="203" height="135" alt="<%= house.title %>">
                     </div>
