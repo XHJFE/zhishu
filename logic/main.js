@@ -56,6 +56,7 @@ function root(req, res, next) {
         util.resetDataByMap(data, {
             menus: 'array',
             cities: 'array',
+            baseInfo: 'object',
             cityUpList: 'array',
             cityDownList: 'array',
             cityInfo: 'array',
@@ -68,10 +69,10 @@ function root(req, res, next) {
                 return b.ratio - a.ratio;
             });
         }
-        // dumpHotList(data.hotList);
+
         data.tools = tools;
         let areaLineData = getLineDataFromHotList(data.hotList);
-        // dumpAreaLineData(areaLineData);
+
         data.hotAreaLineData = JSON.stringify(areaLineData);
         if (data.viewNum && data.viewNum.status && data.viewNum.status == 200) {
             data.view_num = data.viewNum.data;
@@ -81,6 +82,14 @@ function root(req, res, next) {
         }
         data.viewNum = null;
         delete data.viewNum;
+        // 重置站点信息
+        if (data.baseInfo) {
+            data.baseInfo.cityId && (data.cityId = data.baseInfo.cityId);
+            data.baseInfo.name && (data.cityName = data.baseInfo.name);
+            data.baseInfo.domain && (data.siteDomain = data.baseInfo.domain);
+        }
+        // 处理域名项
+        data.siteDomain = data.siteDomain.replace(/\/+$/, '');
         console.log("==============Time Cost==============", stat.get());
         res.render('index', data);
     });

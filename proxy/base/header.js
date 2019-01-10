@@ -31,7 +31,21 @@ async function getCity() {
     return data;
 }
 
+/**
+ * 获取城市信息
+ * @returns {Promise.<*>}
+ */
+async function getCityInfo(cityId) {
+    let data = await proxy({
+        uri: config.proxy_server_url[env] + '/web/city/findById/' + cityId,
+        method: 'GET',
+        headers: config.headers
+    });
+    return data;
+}
+
 module.exports = {
     getMenus: getMenus,
-    getCity: getCity
+    getCity: getCity,
+    getCityInfo: getCityInfo
 };
