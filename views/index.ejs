@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>区域房价</title>
-    <link rel="stylesheet" href="<%=root[env]%>css/house.css">
+    <link rel="stylesheet" href="<%= root[env] %>css/house.css">
     <script type="text/javascript"
             src="http://api.map.baidu.com/api?v=3.0&ak=mGIVfCq3HtLt0aOqYO9tgWdpszLmBk1G"></script>
     <% include include/cssjs %>
@@ -13,49 +13,12 @@
 </head>
 <body>
 <% include include/header %>
-<!--导航-->
-<!--<div class="float_nav">-->
-<!--<ul class="list">-->
-<!--<li class="active">房价指数</li>-->
-<!--<li>房价地图</li>-->
-<!--<li>房价走势</li>-->
-<!--<li>涨幅榜</li>-->
-<!--<li>热门小区</li>-->
-<!--</ul>-->
-<!--</div>-->
+<% include include/anchor %>
 <!--小区信息-->
 <div class="top">
     <div class="content">
-        <div class="typebox">
-            <li class="active">区域房价</li>
-            <!--<li>地铁房价</li>-->
-            <!--<li>小区房价</li>-->
-            <!--<li>PK房价</li>-->
-        </div>
-        <div class="codebox clearfix">
-            <div class="title">
-                <img src="<%= root[env] %>images/icon_phone.png" alt="" class="phone"><span>下载象盒找房APP</span>
-            </div>
-            <div class="codecon">
-                <img src="<%= root[env] %>images/img_bcode.png" alt="">
-                <p class="txt1 ">象盒找房APP</p>
-                <p class="txt2">找房·真·简单</p>
-            </div>
-        </div>
-        <!--搜索框-->
-        <div class="seabox">
-            <div class="seacon">
-                <input class="keywords" type="text" value="" autocomplete="off" placeholder="请输入区域或商圈名查询房价">
-                <div class="btn-search">
-                    <img src="<%= root[env] %>images/icon_search.png" alt="">
-                </div>
-            </div>
-            <div class="seaarea dn" id="allCityInfo"></div>
-            <!--模糊匹配-->
-            <div class="seamh" style="display:none;">
-                <ul class="list"></ul>
-            </div>
-        </div>
+        <% include include/tabCard %>
+        <% include include/search %>
         <!--内容-->
         <div class="showbox linkbox">
             <div class="nodatabox">暂无数据</div>
@@ -72,9 +35,9 @@
                         </div>
                         <% if(tools.getPro(cityInfo, "ratio") !== ''){ %>
                         <div class="sj">环比上月<span
-                                    class="<% if(cityInfo.ratio > 1){ %>red<% }else{ %>green<% } %>"><%= (Math.abs(1 - cityInfo.ratio) * 100).toFixed(2) %>
+                                    class="<% if(tools.getPro(cityInfo, "ratio") > 1){ %>red<% }else{ %>green<% } %>"><%= tools.getRatioH(tools.getPro(cityInfo, 'ratio')) %>
                                 %
-                                <% if(cityInfo.ratio > 1){ %>
+                                <% if(tools.getPro(cityInfo, "ratio") > 1){ %>
                                 ↑
                                 <% }else{ %>
                                 ↓
@@ -162,10 +125,11 @@
                                 <% } %>
                         ><%= index + 1 %></span></div>
                     <div class="name"><a
-                                href="<%= siteDomain %>/xiaoqu/<%= upItem.lpid %>.html" target="_blank"><%= upItem.lpname %></a>
+                                href="<%= siteDomain %>/xiaoqu/<%= tools.getPro(upItem, 'lpid') %>.html"
+                                target="_blank"><%= tools.getPro(upItem, 'lpname') %></a>
                     </div>
-                    <div class="price"><%= upItem.avg_price %>元/㎡</div>
-                    <div class="zf"><%= (upItem.ratio - 0).toFixed(2) %>% ↑</div>
+                    <div class="price"><%= tools.getPro(upItem, 'avg_price') %>元/㎡</div>
+                    <div class="zf"><%= (tools.getPro(upItem, 'ratio') - 0).toFixed(2) %>% ↑</div>
                 </li>
                 <% }); %>
             </ul>
@@ -191,10 +155,11 @@
                                 <% } %>
                         ><%= index + 1 %></span></div>
                     <div class="name"><a
-                                href="<%= siteDomain %>/xiaoqu/<%= upItem.lpid %>.html" target="_blank"><%= upItem.lpname %></a>
+                                href="<%= siteDomain %>/xiaoqu/<%= tools.getPro(upItem, 'lpid') %>.html"
+                                target="_blank"><%= tools.getPro(upItem, 'lpname') %></a>
                     </div>
-                    <div class="price"><%= upItem.avg_price %>元/㎡</div>
-                    <div class="jf"><%= (upItem.ratio - 0).toFixed(2) %>% ↓</div>
+                    <div class="price"><%= tools.getPro(upItem, 'avg_price') %>元/㎡</div>
+                    <div class="jf"><%= (tools.getPro(upItem, 'ratio') - 0).toFixed(2) %>% ↓</div>
                 </li>
                 <% }); %>
             </ul>
@@ -211,18 +176,20 @@ if(hotList.hotStress && hotList.hotStress.length){
         <%
         hotList.hotStress && hotList.hotStress.map(function (hotStress, hotStressIndex) {
             let stressInfo = hotStress[0];
-            let ratio = hotStress[1].avg_price > 0 ? stressInfo.avg_price / hotStress[1].avg_price : 0;
+            let ratio = hotStress[1] && hotStress[1].avg_price > 0 ? stressInfo.avg_price / hotStress[1].avg_price : 0;
         %>
         <div class="box clearfix">
             <p class="btitle">
                 <span class="name"><a
-                            href="<%= siteDomain %>/xiaoqu/<%= stressInfo.lpid %>.html" target="_blank"><%= stressInfo.lp_name %></a></span>
-                <span class="address"><img src="<%= root[env] %>images/icon_slocation.png" alt=""><%= stressInfo.qyname %>&nbsp;&nbsp;<%= stressInfo.sqname %></span>
-                <span class="more_link"><a href="<%= siteDomain %>/xiaoqu/esf/<%= stressInfo.lpid %>/" target="_blank">更多>></a></span>
+                            href="<%= siteDomain %>/xiaoqu/<%= tools.getPro(stressInfo, "lpid") %>.html"
+                            target="_blank"><%= tools.getPro(stressInfo, "lp_name") %></a></span>
+                <span class="address"><img src="<%= root[env] %>images/icon_slocation.png"
+                                           alt=""><%= tools.getPro(stressInfo, "qyname") %>&nbsp;&nbsp;<%= tools.getPro(stressInfo, "sqname") %></span>
+                <span class="more_link"><a href="<%= siteDomain %>/xiaoqu/esf/<%= tools.getPro(stressInfo, "lpid") %>/" target="_blank">更多>></a></span>
             </p>
             <div class="hotleft">
-                <p class="state"><%= stressInfo.month %>月二手房均价 <span
-                            class="num"><%= stressInfo.avg_price %></span>元/㎡
+                <p class="state"><%= tools.getPro(stressInfo, "month") %>月二手房均价 <span
+                            class="num"><%= tools.getPro(stressInfo, "avg_price") %></span>元/㎡
                     ，环比上月
                     <% if(ratio > 1){ %>
                     上涨
@@ -238,13 +205,13 @@ if(hotList.hotStress && hotList.hotStress.length){
                     let houseInfo = hotList.hotHouse[hotStressIndex];
                 houseInfo.map(function (house) {
                 %>
-                <a href="<%= siteDomain %>/ershoufang/<%= house.hsmid %>.html" target="_blank">
-                    <span class="price"><%= house.totalPrice %>万</span>
-                    <div class="imgbox"><img src="<%= house.thumb %>" width="203" height="135" alt="<%= house.title %>">
+                <a href="<%= siteDomain %>/ershoufang/<%= tools.getPro(house, "hsmid") %>.html" target="_blank">
+                    <span class="price"><%= tools.getPro(house, "totalPrice") %>万</span>
+                    <div class="imgbox"><img src="<%= tools.getPro(house, "thumb") %>" width="203" height="135" alt="<%= tools.getPro(house, "title") %>">
                     </div>
-                    <p class="txt"><%= house.title %></p>
-                    <p><span class="jg"><%= house.roomNumber %>室<%= house.hallNumber %>厅<%= house.toiletNumber %>
-                            卫</span> <span class="mj"><%= house.area %>㎡</span></p>
+                    <p class="txt"><%= tools.getPro(house, "title") %></p>
+                    <p><span class="jg"><%= tools.getPro(house, "roomNumber") %>室<%= tools.getPro(house, "hallNumber") %>厅<%= tools.getPro(house, "toiletNumber") %>
+                            卫</span> <span class="mj"><%= tools.getPro(house, "area") %>㎡</span></p>
                 </a>
                 <% }); %>
             </div>
