@@ -66,6 +66,16 @@
     "/web/housePrice/stress/hot",
     "/web/region/findByCityId/{cityId}",
     "/web/shopmap/findByFirstAlp/{regionId}",
-    "/web/city/findById/{cityId}"
+    "/web/city/findById/{cityId}",
+    "/web/housePrice/stress/find",
+    "/web/housePrice/record/stress/search",
+    "/web/housePrice/stress/searchStress",
+    "/web/housePrice/stress/zhuanjia/{stressId}",
+    "/web/housePrice/stress/findNearbyHouse",
+    "/web/housePrice/stress/findNearbyStress",
+    "/web/housePrice/stress/findNearbyHouseFromSo",
+    "/web/housePrice/stress/findContractAvgPrice",
+    "/web/housePrice/stress/findHotSearchStress",
+    "/web/housePrice/record/stress/default"
   ]
 }

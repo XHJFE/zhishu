@@ -103,6 +103,17 @@ a {
     color: #434343;
 }
 
+.typebox li a:link, .typebox li a:visited, .typebox li a:active {
+    color: #fff;
+}
+
+.typebox li a:hover {
+}
+
+.typebox li.active a:link, .typebox li.active a:visited, .typebox li.active a:active {
+    color: #434343;
+}
+
 .codebox {
     float: right;
     font-size: 16px;
@@ -226,6 +237,13 @@ a {
 
 .seamh li .txt {
     margin-right: 5px;
+}
+
+.seamh li .count {
+    position: absolute;
+    right: 12px;
+    color: #bbbbbb;
+    font-weight: bold;
 }
 
 .seamh li .cur {
@@ -726,7 +744,7 @@ a {
 }
 
 .xqrightbox .detail {
-    float: left;
+    float: right;
     width: 386px;
 }
 
@@ -814,6 +832,10 @@ a {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 28px;
+}
+
+.zsbox .content {
+    min-height: 410px;
 }
 
 .xqzsbox {
@@ -968,11 +990,13 @@ a {
     position: absolute;
     right: 0px;
 }
-.hotzsbox .box .btitle .more_link a:visited, .hotzsbox .box .btitle .more_link a:link{
-    color:#898989;
+
+.hotzsbox .box .btitle .more_link a:visited, .hotzsbox .box .btitle .more_link a:link {
+    color: #898989;
 }
-.hotzsbox .box .btitle .more_link a:hover{
-    color:#448aca;
+
+.hotzsbox .box .btitle .more_link a:hover {
+    color: #448aca;
 }
 
 .hotzsbox .address img {
@@ -1389,28 +1413,26 @@ a {
     }
 }
 
-#map_container {
-    min-height: 500px;
-}
-
-#map_container .placeholder {
+.placeholder {
     line-height: 500px;
     text-align: center;
     color: grey;
+}
+
+#map_container {
+    min-height: 500px;
 }
 
 #line_container {
     min-height: 500px;
 }
 
-#line_container .placeholder {
-    line-height: 500px;
-    text-align: center;
-    color: grey;
-}
-
 .hot_line_container {
     position: absolute;
     width: 244px;
     height: 228px;
+}
+
+.zsbox .placeholder{
+    line-height: 410px;
 }

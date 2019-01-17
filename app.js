@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 let log4js = require('log4js');
 log4js.configure(require('./log4js.json'));
 let log = log4js.getLogger('app');
+let config = require('./config.json');
 
 var routes = require('./routes/index');
 var apiRouter = require('./routes/api');
@@ -57,10 +58,18 @@ if (app.get('env') === 'development') {
 app.use(function (err, req, res, next) {
     log.error(err.message);
     res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
+    if (config.base.env === 'dev') {
+        res.render('error', {
+            message: err.message,
+            error: {}
+        });
+    }
+    else {
+        res.render('err', {
+            message: err.message,
+            error: {}
+        });
+    }
 });
 
 
