@@ -46,10 +46,18 @@ if (app.get('env') === 'development') {
     app.use(function (err, req, res, next) {
         log.error(err.message);
         res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
+        if (config.base.env === 'dev') {
+            res.render('error', {
+                message: err.message,
+                error: err
+            });
+        }
+        else {
+            res.render('err', {
+                message: err.message,
+                error: {}
+            });
+        }
     });
 }
 

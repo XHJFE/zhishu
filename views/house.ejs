@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>小区房价</title>
+    <link rel="stylesheet" href="<%= root[env] %>css/house.css">
+    <% include include/cssjs %>
+    <script>
+        var lpid = "<%= tools.getPro(cityInfo, 'lpid') %>";
+        var sqid = "<%= tools.getPro(cityInfo, 'sqid') %>";
+    </script>
+</head>
+<body>
+<% include include/header %>
+<% include include/anchor %>
+<!--小区信息-->
+<div class="top">
+    <div class="content">
+        <% include include/tabCard %>
+        <% include include/search_house %>
+        <!--内容-->
+        <div class="showbox linkbox">
+            <div class="leftbox">
+                <div class="citybox">
+                    <img src="<%= root[env] %>images/icon_house.png" alt="" class="bounce">
+                    <span class="city"><%= tools.getPro(cityInfo, "lpname") %></span>
+                    <a href="<%= siteDomain %>/xiaoqu/<%= tools.getPro(cityInfo, "lpid") %>.html" class="more"
+                       target="_blank">查看小区更多房源</a>
+                </div>
+                <div class="detailbox">
+                    <p class="info"><span
+                                class="month"><%= new Date(tools.getPro(cityInfo, "day_time")).getMonth() + 1 %>月</span><span
+                                class="area"><%= tools.getPro(cityInfo, "lpname") %> </span>象盒参考均价</p>
+                    <div class="pricebox">
+                        <div class="mj"><span class="num timer count-title"
+                                              id="count-number"><%= tools.getPro(cityInfo, "avg_price") %></span>元/平米
+                        </div>
+                        <% if(tools.getPro(cityInfo, "ratio") !== ''){ %>
+                        <div class="sj">环比上月<span
+                                    class="<% if(tools.getPro(cityInfo, "ratio") > 1){ %>red<% }else{ %>green<% } %>"><%= tools.getRatioH(tools.getPro(cityInfo, 'ratio')) %>
+                                %
+                                <% if(tools.getPro(cityInfo, "ratio") > 1){ %>
+                                ↑
+                                <% }else{ %>
+                                ↓
+                                <% } %>
+                            </span></div>
+                        <% } %>
+                    </div>
+
+                    <p class="data">已有<%= view_num %>人查询区域房价</p>
+                </div>
+            </div>
+            <div class="rightbox xqrightbox">
+                <ul>
+                    <li>
+                        <p class="title">在售房源</p>
+                        <p class="txt"><span class="num blue"><%= tools.getPro(cityInfo, "house_num_all") %></span><span
+                                    class="dw">套</span></p>
+                    </li>
+                    <li>
+                        <p class="title">最低挂牌房源</p>
+                        <p class="txt"><span class="num xqblue"><%= tools.getPro(cityInfo, "min_price") %></span></p>
+                        <p class="dwbox">元/平米</p>
+                    </li>
+                    <li>
+                        <p class="title">最高挂牌房源</p>
+                        <p class="txt"><span class="num xqblue"><%= tools.getPro(cityInfo, "max_price") %></span></p>
+                        <p class="dwbox">元/平米</p>
+                    </li>
+                    <li>
+                        <p class="title">今日新增房源</p>
+                        <p class="txt"><span class="num blue"><%= tools.getPro(cityInfo, "house_num_add") %></span><span
+                                    class="dw">套</span></p>
+                    </li>
+                    <li>
+                        <p class="title">今日涨价房源</p>
+                        <p class="txt"><span class="num red"><%= tools.getPro(cityInfo, "price_increase") %></span><span
+                                    class="dw">套</span></p>
+                    </li>
+                    <li>
+                        <p class="title">今日降价房源</p>
+                        <p class="txt"><span
+                                    class="num green"><%= tools.getPro(cityInfo, "price_reduction") %></span><span
+                                    class="dw">套</span></p>
+                    </li>
+                </ul>
+                <div class="personbox">
+                    <% if(!tools.isEmpty(professionInfo)){ %>
+                    <div class="imgbox"><img
+                                src="<%= tools.getPro(professionInfo, "portrait") ? tools.getPro(professionInfo, "portrait") : siteDomain + "/web/images/jingjiren.jpg" %>"
+                                width="100" height="122" alt=""></div>
+                    <div class="detail">
+                        <p class="toptxt"><span class="name"><%= tools.getPro(professionInfo, "name") %></span> <span
+                                    class="label">楼盘专家</span> <a href="<%= siteDomain %>/jingjiren/jjr_esf/"
+                                                                 class="more" target="_blank">更多经纪人></a>
+                        </p>
+                        <p class="middletxt">我了解本小区欢迎咨询 <span
+                                    class="fynum">在售房源: <%= tools.getPro(professionInfo, "houseCounts") %> 套</span></p>
+                        <p class="bottomtxt">
+                            <span class="phone"><img src="<%= root[env] %>images/icon_phonered.png"
+                                                     alt="">4008821799 转 <b><%= tools.getPro(professionInfo, "extNum") %></b></span>
+                            <a href="<%= siteDomain %>/jingjiren/jjr_esf/<%= tools.getPro(professionInfo, "belongerId") %>"
+                               class="viewbtn" target="_blank">查看个人店铺</a>
+                        </p>
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--房价走势-->
+<div class="zsbox xqzsbox linkbox">
+    <div class="title"><%= tools.getPro(cityInfo, "lpname") %>二手房价走势</div>
+    <div id="hot_line" class="content">
+        <div class="placeholder">正在生成走势图，请稍后...</div>
+    </div>
+</div>
+<!--二手房-->
+<div class="housebox esfbox linkbox">
+    <div class="title"><span class="name"><%= tools.getPro(cityInfo, "lpname") %>·二手房</span> <a
+                href="<%= siteDomain %>/xiaoqu/esf/<%= tools.getPro(cityInfo, "lpid") %>" class="more" target="_blank">查看全部<%= tools.getPro(cityInfo, "lpname") %>
+            二手房 ></a></div>
+    <div class="content">
+        <% if(esf && esf.length){ %>
+        <% esf.map(function(v){ %>
+        <a href="<%= siteDomain %>/ershoufang/<%= tools.getPro(v, "hsmid") %>.html" target="_blank">
+            <div class="imgbox"><img src="<%= tools.getPro(v, "thumb") %>" width="305" height="203"
+                                     alt="<%= tools.getPro(v, "title") %>"></div>
+            <div class="info">
+                <p class="area"><span class="qy"><%= tools.getPro(v, "regionName") %></span> <span
+                            class="address"><%= tools.getPro(v, "shopMapName") %></span></p>
+                <p class="txt"><span class="hx"><%= tools.getPro(v, "roomNumber") %>
+                        室<%= tools.getPro(v, "hallNumber") %>厅<%= tools.getPro(v, "toiletNumber") %>
+                        卫</span>|<span class="mj"><%= tools.getPro(v, "area") %>㎡</span></p>
+                <div class="price"><%= tools.getPro(v, "totalPrice") %>万</div>
+            </div>
+        </a>
+        <% }); %>
+        <% } %>
+    </div>
+</div>
+<!--租房-->
+<div class="housebox zfbox linkbox">
+    <div class="title"><span class="name"><%= tools.getPro(cityInfo, "lpname") %>·租房</span> <a
+                href="<%= siteDomain %>/xiaoqu/zufang/<%= tools.getPro(cityInfo, "lpid") %>" class="more"
+                target="_blank">查看全部<%= tools.getPro(cityInfo, "lpname") %>
+            租房 ></a></div>
+    <div class="content">
+        <% if(zf && zf.length){ %>
+        <% zf.map(function(v){ %>
+        <a href="<%= siteDomain %>/zufang/ad/<%= tools.getPro(v, "hsmid") %>.html" target="_blank">
+            <div class="imgbox"><img src="<%= tools.getPro(v, "thumb") %>" width="305" height="203"
+                                     alt="<%= tools.getPro(v, "title") %>"></div>
+            <div class="info">
+                <p class="area"><span class="qy"><%= tools.getPro(v, "regionName") %></span> <span
+                            class="address"><%= tools.getPro(v, "shopMapName") %></span><span
+                            class="hx"><%= tools.getPro(v, "roomNumber") %>室<%= tools.getPro(v, "hallNumber") %>
+                        厅<%= tools.getPro(v, "toiletNumber") %>卫</span></p>
+                <div class="pricetxt">月均: <span class="money"><%= tools.getPro(v, "price") %> <i
+                                class="dw">元/月</i></span></div>
+            </div>
+        </a>
+        <% }); %>
+        <% } %>
+    </div>
+</div>
+<!--附近小区-->
+<div class="housebox xqbox linkbox">
+    <div class="title"><span class="name"><%= tools.getPro(cityInfo, "lpname") %>·附近小区</span> <a
+                href="<%= siteDomain %>/xiaoqu" class="more" target="_blank">更多小区
+            ></a></div>
+    <div class="content">
+        <% if(stress && stress.length){ %>
+        <% stress.map(function(v){ %>
+        <a href="<%= siteDomain %>/xiaoqu/<%= tools.getPro(v, "stressId") %>.html" target="_blank">
+            <div class="imgbox"><img src="<%= tools.getPro(v, "thumb") %>" width="277" height="184"
+                                     alt="<%= tools.getPro(v, "title") %>"></div>
+            <div class="info">
+                <p><span class="name"><%= tools.getPro(v, "name") %></span><span
+                            class="dj"><%= (tools.getPro(v, "ershouAbgPrice") - 0).toFixed(2) %>元/㎡</span>
+                </p>
+            </div>
+        </a>
+        <% }); %>
+        <% } %>
+    </div>
+</div>
+<!--涨幅榜-->
+<div class="zfbox linkbox upordown_list">
+    <div class="zfleft">
+        <div class="title">近1个月<%= tools.getPro(cityInfo, "sqname") %>房价涨幅榜</div>
+        <div class="content">
+            <div class="namelist">
+                <div class="order">排行</div>
+                <div class="name">小区</div>
+                <div class="price">小区均价</div>
+                <div class="zf">涨幅</div>
+            </div>
+            <ul class="list" id="uplist">
+                <%
+                upList && upList.length && upList.map(function(item, index){
+                %>
+                <li>
+                    <div class="order"><span
+                                <% if(index < 3){ %>
+                                class="redcolor"
+                                <% } %>
+                        ><%= index + 1 %></span></div>
+                    <div class="name"><a href="<%= siteDomain %>/xiaoqu/<%= tools.getPro(item, "lpid") %>.html"
+                                         target="_blank"><%= tools.getPro(item, "lpname") %></a></div>
+                    <div class="price"><%= tools.getPro(item, "avg_price") %>元/㎡</div>
+                    <div class="zf"><%= (tools.getPro(item, "ratio") - 0).toFixed(2) %>% ↑</div>
+                </li>
+                <% }); %>
+            </ul>
+        </div>
+    </div>
+    <div class="zfright">
+        <div class="title">近1个月附近小区热搜排行榜</div>
+        <div class="content">
+            <div class="namelist">
+                <div class="order">排行</div>
+                <div class="name">小区</div>
+                <div class="price">小区均价</div>
+                <div class="zf">涨跌幅</div>
+            </div>
+            <ul class="list" id="nearlist">
+                <%
+                let ratioMap = {'add': {cls: 'zf', flag: '↑'}, 'dec': {cls: 'jf', flag: '↓'}};
+                hotStress && hotStress.length && hotStress.map(function(stress, index){
+                    let ratio = tools.splitRatio(tools.getPro(stress, "ratio"));
+                %>
+                <li>
+                    <div class="order"><span
+                                <% if(index < 3){ %>
+                                class="redcolor"
+                                <% } %>
+                        ><%= index + 1 %></span></div>
+                    <div class="name"><a href="<%= siteDomain %>/xiaoqu/<%=tools.getPro(stress, "lpid") %>.html"
+                                         target="_blank"><%= tools.getPro(stress, "lpname") %></a></div>
+                    <div class="price"><%= tools.getPro(stress, "avg_price") %>元/㎡</div>
+                    <div class="<%= ratioMap[ratio[1]].cls %>"><%= ratio[0] %>% <%= ratioMap[ratio[1]].flag %></div>
+                </li>
+                <% }); %>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--热门小区房价走势-->
+<div class="hotzsbox linkbox">
+    <div class="title"><%= tools.getPro(cityInfo, "lpname") %>热门小区二手房走势</div>
+    <div class="content"></div>
+    <a href="<%= siteDomain %>/ershoufang" class="more" target="_blank">查看更多资源</a>
+</div>
+<% include include/footer %>
+<script>require(["pc_zhishu_house"])</script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <title>PK房价</title>
+    <link rel="stylesheet" href="<%= root[env] %>css/house.css">
+    <% include include/cssjs %>
+</head>
+<body>
+<% include include/header %>
+<% include include/anchor %>
+<!--小区信息-->
+<div class="top">
+    <div class="content">
+        <% include include/tabCard %>
+        <!--搜索框-->
+        <div class="seacontent clearfix">
+            <div class="seabox pseabox plseabox">
+                <div class="seacon">
+                    <input class="keywords" type="text" value="" placeholder="请输入小区名查询房价" autocomplete="off">
+                    <div class="btn-search">
+                        <img src="<%= root[env] %>images/icon_search.png" alt="search">
+                    </div>
+                </div>
+                <div class="seaarea pk dn">
+                    <div class="seamh">
+                        <ul class="list"></ul>
+                    </div>
+                </div>
+            </div>
+            <div class="pkcontainer"><input type="button" class="pkbutton"></div>
+            <div class="seabox pseabox prseabox">
+                <div class="seacon">
+                    <input class="keywords" type="text" value="" placeholder="请输入小区名查询房价" autocomplete="off">
+                    <div class="btn-search">
+                        <img src="<%= root[env] %>images/icon_search.png" alt="">
+                    </div>
+                </div>
+                <div class="seaarea pk dn">
+                    <div class="seamh">
+                        <ul class="list"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--内容-->
+        <div class="showboxt linkbox">
+            <div class="pk_nodatabox"><img src="../images/nopic.png"><div class="noword">您还没选择PK的小区</div></div>
+            <div class="topbox">
+                <p class="title">11月象盒参考均价</p>
+                <div class="namebox">
+                    <div class="name nameo"></div>
+                    <div class="vs">VS</div>
+                    <div class="name namet"></div>
+                </div>
+                <p class="numtxt">已有75622人查询PK房价</p>
+            </div>
+            <div class="bottombox">
+                <div class="box lfbox">
+                    <div class="pricebox">
+                        <div class="mj"><span class="num timer count-title"></span>元/㎡
+                        </div>
+                        <div class="sj">环比上月<span class="red"></span></div>
+                    </div>
+                    <ul class="showlist">
+                        <li>
+                            <div class="lname">在售房源</div>
+                            <div class="numbox"><span class="num blue"></span><span class="dw">套</span></div>
+                        </li>
+                        <li>
+                            <div class="lname">最低挂牌房源(元/㎡)</div>
+                            <div class="numbox"><span class="num noblue"></span><span class="dw"></span></div>
+                        </li>
+                        <li>
+                            <div class="lname">最高挂牌房源(元/㎡)</div>
+                            <div class="numbox"><span class="num noblue"></span><span class="dw"></span></div>
+                        </li>
+                        <li>
+                            <div class="lname">今日新增房源</div>
+                            <div class="numbox"><span class="num blue"></span><span class="dw">套</span></div>
+                        </li>
+                        <li>
+                            <div class="lname">今日涨价房源</div>
+                            <div class="numbox"><span class="num red"></span><span class="dw">套</span></div>
+                        </li>
+                        <li>
+                            <div class="lname">今日降价房源</div>
+                            <div class="numbox"><span class="num green"></span><span class="dw">套</span></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="box rtbox">
+                    <div class="pricebox">
+                        <div class="mj"><span class="num timer count-title"></span>元/㎡
+                        </div>
+                        <div class="sj">环比上月<span class="red"></span></div>
+                    </div>
+                    <ul class="showlist">
+                        <li>
+                            <div class="lname">在售房源</div>
+                            <div class="numbox"><span class="num blue"></span><span class="dw">套</span></div>
+                        </li>
+                        <li>
+                            <div class="lname">最低挂牌房源(元/㎡)</div>
+                            <div class="numbox"><span class="num noblue"></span><span class="dw"></span></div>
+                        </li>
+                        <li>
+                            <div class="lname">最高挂牌房源(元/㎡)</div>
+                            <div class="numbox"><span class="num noblue"></span><span class="dw"></span></div>
+                        </li>
+                        <li>
+                            <div class="lname">今日新增房源</div>
+                            <div class="numbox"><span class="num blue"></span><span class="dw">套</span></div>
+                        </li>
+                        <li>
+                            <div class="lname">今日涨价房源</div>
+                            <div class="numbox"><span class="num red"></span><span class="dw">套</span></div>
+                        </li>
+                        <li>
+                            <div class="lname">今日降价房源</div>
+                            <div class="numbox"><span class="num green"></span><span class="dw">套</span></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--房价走势-->
+<div class="zsbox vszsbox linkbox"></div>
+<!--热门小区房价走势-->
+<div id="hota" class="hotzsbox linkbox"></div>
+<div id="hotb" class="hotzsbox linkbox"></div>
+<!--附近小区-->
+<div id="neara" class="housebox xqbox linkbox"></div>
+<div id="nearb" class="housebox xqbox linkbox"></div>
+<% include include/footer %>
+<script>require(['pc_zhishu_pk'])</script>
+</body>
+</html>

@@ -10,11 +10,11 @@
     "timeout": 5000,
     "proxy_server_url": {
       "dev": "http://zcms.xhj.com:88",
-      "production": "http://console.xhj.com"
+      "production": "http://xhj-sz-7b:8080"
     },
     "base_server_url": {
       "dev": "http://192.168.2.117:88",
-      "production": "http://console.xhj.com"
+      "production": "http://xhj-sz-7b:8080"
     },
     "headers": {
       "Content-Type": "application/json;charset=UTF-8",
@@ -76,6 +76,8 @@
     "/web/housePrice/stress/findNearbyHouseFromSo",
     "/web/housePrice/stress/findContractAvgPrice",
     "/web/housePrice/stress/findHotSearchStress",
-    "/web/housePrice/record/stress/default"
+    "/web/housePrice/record/stress/default",
+    "/web/housePrice/record/findSearchCount",
+    "/web/housePrice/pk/find"
   ]
 }
