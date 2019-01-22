@@ -207,7 +207,7 @@ if(hotList.hotStress && hotList.hotStress.length){
                 %>
                 <a href="<%= siteDomain %>/ershoufang/<%= tools.getPro(house, "hsmid") %>.html" target="_blank">
                     <span class="price"><%= tools.getPro(house, "totalPrice") %>万</span>
-                    <div class="imgbox"><img src="<%= tools.getPro(house, "thumb") %>" width="203" height="135" alt="<%= tools.getPro(house, "title") %>">
+                    <div class="imgbox"><img src="<%= tools.getClearImgPath(tools.getPro(house, "thumb")) %>" width="203" height="135" alt="<%= tools.getPro(house, "title") %>">
                     </div>
                     <p class="txt"><%= tools.getPro(house, "title") %></p>
                     <p><span class="jg"><%= tools.getPro(house, "roomNumber") %>室<%= tools.getPro(house, "hallNumber") %>厅<%= tools.getPro(house, "toiletNumber") %>
