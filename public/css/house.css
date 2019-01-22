@@ -220,17 +220,17 @@ a {
 }
 
 .pkcontainer .pkbutton {
-    display:inline-block;
-    width:83px;
-    height:83px;
-    background:url(../images/pk.png) no-repeat;
-    background-size:83px 83px;
-    border:none;
-    vertical-align:middle;
-    margin-top:-15px;
-    padding:0;
-    border-radius:100%;
-    cursor:pointer;
+    display: inline-block;
+    width: 83px;
+    height: 83px;
+    background: url(../images/pk.png) no-repeat;
+    background-size: 83px 83px;
+    border: none;
+    vertical-align: middle;
+    margin-top: -15px;
+    padding: 0;
+    border-radius: 100%;
+    cursor: pointer;
     transition: all .5s ease;
 }
 
@@ -1473,14 +1473,29 @@ a {
     text-align: center;
     font-size: 18px;
     color: #666;
-    overflow:hidden;
+    overflow: hidden;
 }
-.pk_nodatabox img{
-    display:block;
-    margin:80px auto 10px;
+
+.pk_nodatabox img {
+    display: block;
+    margin: 80px auto 10px;
 }
-.pk_nodatabox .noword{
-    color:#888;
-    font-size:18px;
-    margin-bottom:90px;
+
+.pk_nodatabox .noword {
+    color: #888;
+    font-size: 18px;
+    margin-bottom: 90px;
+}
+
+@keyframes pk_ani {
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.pk_animation {
+    animation: pk_ani .5s ease 0s 3;
 }
