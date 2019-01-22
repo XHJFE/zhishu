@@ -120,14 +120,15 @@
 </div>
 <!--二手房-->
 <div class="housebox esfbox linkbox">
+    <% if(esf && esf.length){ %>
     <div class="title"><span class="name"><%= tools.getPro(cityInfo, "lpname") %>·二手房</span> <a
                 href="<%= siteDomain %>/xiaoqu/esf/<%= tools.getPro(cityInfo, "lpid") %>" class="more" target="_blank">查看全部<%= tools.getPro(cityInfo, "lpname") %>
             二手房 ></a></div>
     <div class="content">
-        <% if(esf && esf.length){ %>
         <% esf.map(function(v){ %>
         <a href="<%= siteDomain %>/ershoufang/<%= tools.getPro(v, "hsmid") %>.html" target="_blank">
-            <div class="imgbox"><img src="<%= tools.getClearImgPath(tools.getPro(v, "thumb")) %>" width="305" height="203"
+            <div class="imgbox"><img src="<%= tools.getClearImgPath(tools.getPro(v, "thumb")) %>" width="305"
+                                     height="203"
                                      alt="<%= tools.getPro(v, "title") %>"></div>
             <div class="info">
                 <p class="area"><span class="qy"><%= tools.getPro(v, "regionName") %></span> <span
@@ -139,20 +140,21 @@
             </div>
         </a>
         <% }); %>
-        <% } %>
     </div>
+    <% } %>
 </div>
 <!--租房-->
 <div class="housebox zfbox linkbox">
+    <% if(zf && zf.length){ %>
     <div class="title"><span class="name"><%= tools.getPro(cityInfo, "lpname") %>·租房</span> <a
                 href="<%= siteDomain %>/xiaoqu/zufang/<%= tools.getPro(cityInfo, "lpid") %>" class="more"
                 target="_blank">查看全部<%= tools.getPro(cityInfo, "lpname") %>
             租房 ></a></div>
     <div class="content">
-        <% if(zf && zf.length){ %>
         <% zf.map(function(v){ %>
         <a href="<%= siteDomain %>/zufang/ad/<%= tools.getPro(v, "hsmid") %>.html" target="_blank">
-            <div class="imgbox"><img src="<%= tools.getClearImgPath(tools.getPro(v, "thumb")) %>" width="305" height="203"
+            <div class="imgbox"><img src="<%= tools.getClearImgPath(tools.getPro(v, "thumb")) %>" width="305"
+                                     height="203"
                                      alt="<%= tools.getPro(v, "title") %>"></div>
             <div class="info">
                 <p class="area"><span class="qy"><%= tools.getPro(v, "regionName") %></span> <span
@@ -164,19 +166,20 @@
             </div>
         </a>
         <% }); %>
-        <% } %>
     </div>
+    <% } %>
 </div>
 <!--附近小区-->
 <div class="housebox xqbox linkbox">
+    <% if(stress && stress.length){ %>
     <div class="title"><span class="name"><%= tools.getPro(cityInfo, "lpname") %>·附近小区</span> <a
                 href="<%= siteDomain %>/xiaoqu" class="more" target="_blank">更多小区
             ></a></div>
     <div class="content">
-        <% if(stress && stress.length){ %>
         <% stress.map(function(v){ %>
         <a href="<%= siteDomain %>/xiaoqu/<%= tools.getPro(v, "stressId") %>.html" target="_blank">
-            <div class="imgbox"><img src="<%= tools.getClearImgPath(tools.getPro(v, "thumb")) %>" width="277" height="184"
+            <div class="imgbox"><img src="<%= tools.getClearImgPath(tools.getPro(v, "thumb")) %>" width="277"
+                                     height="184"
                                      alt="<%= tools.getPro(v, "title") %>"></div>
             <div class="info">
                 <p><span class="name"><%= tools.getPro(v, "name") %></span><span
@@ -185,8 +188,8 @@
             </div>
         </a>
         <% }); %>
-        <% } %>
     </div>
+    <% } %>
 </div>
 <!--涨幅榜-->
 <div class="zfbox linkbox upordown_list">
@@ -239,7 +242,7 @@
                                 class="redcolor"
                                 <% } %>
                         ><%= index + 1 %></span></div>
-                    <div class="name"><a href="<%= siteDomain %>/xiaoqu/<%=tools.getPro(stress, "lpid") %>.html"
+                    <div class="name"><a href="<%= siteDomain %>/xiaoqu/<%= tools.getPro(stress, "lpid") %>.html"
                                          target="_blank"><%= tools.getPro(stress, "lpname") %></a></div>
                     <div class="price"><%= tools.getPro(stress, "avg_price") %>元/㎡</div>
                     <div class="<%= ratioMap[ratio[1]].cls %>"><%= ratio[0] %>% <%= ratioMap[ratio[1]].flag %></div>
