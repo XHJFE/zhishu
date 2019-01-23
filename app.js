@@ -8,6 +8,7 @@ let log4js = require('log4js');
 log4js.configure(require('./log4js.json'));
 let log = log4js.getLogger('app');
 let config = require('./config.json');
+let _ = require('underscore');
 
 var routes = require('./routes/index');
 var apiRouter = require('./routes/api');
@@ -47,16 +48,16 @@ if (app.get('env') === 'development') {
         log.error(err.message);
         res.status(err.status || 500);
         if (config.base.env === 'dev') {
-            res.render('error', {
+            res.render('error', _.extend({
                 message: err.message,
                 error: err
-            });
+            }, config.base));
         }
         else {
-            res.render('err', {
+            res.render('err', _.extend({
                 message: err.message,
                 error: {}
-            });
+            }, config.base));
         }
     });
 }
@@ -67,16 +68,16 @@ app.use(function (err, req, res, next) {
     log.error(err.message);
     res.status(err.status || 500);
     if (config.base.env === 'dev') {
-        res.render('error', {
+        res.render('error', _.extend({
             message: err.message,
             error: {}
-        });
+        }, config.base));
     }
     else {
-        res.render('err', {
+        res.render('err', _.extend({
             message: err.message,
             error: {}
-        });
+        }, config.base));
     }
 });
 

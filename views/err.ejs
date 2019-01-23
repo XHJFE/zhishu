@@ -5,14 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <title>很抱歉，您访问的页面被外星人劫走了！</title>
+    <% include include/cssjs %>
     <style>
-        h1{
-            line-height: 480px;
+        h1 {
+            position: absolute;
+            width: 100%;
             text-align: center;
+            color: white;
         }
     </style>
 </head>
-<body>
+<body id="container">
 <h1>很抱歉，您访问的页面被外星人劫走了！</h1>
+<div id="canvas_bg"></div>
+<script>require(['pc_zhishu_err'])</script>
 </body>
 </html>
