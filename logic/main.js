@@ -175,7 +175,7 @@ function house(req, res, next) {
 
         resetSiteInfo(data);
         loadPlus(data);
-        dumpCityInfo(data);
+        // dumpCityInfo(data);
         res.render('house', data);
     });
 }

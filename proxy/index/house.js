@@ -140,12 +140,12 @@ async function getHotStress(sqid) {
  * 获取默认小区
  * @returns {Promise.<{lpid: string}>}
  */
-async function getDefaultArea() {
+async function getDefaultArea(cityId) {
     let data = await proxy({
         uri: config.base_server_url[env] + '/web/housePrice/record/stress/default',
         method: 'POST',
         headers: config.headers,
-        body: JSON.stringify({})
+        body: JSON.stringify({cityId: cityId, type: 'STRESS'})
     });
     return data;
 }
