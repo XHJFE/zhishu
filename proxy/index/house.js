@@ -123,15 +123,15 @@ async function getProfession(stressId) {
 
 /**
  * 获取附近热搜小区
- * @param sqid 商圈ID
+ * @param cityId 城市ID
  * @returns {Promise.<void>}
  */
-async function getHotStress(sqid) {
+async function getHotStress(cityId) {
     let data = await proxy({
         uri: config.base_server_url[env] + '/web/housePrice/stress/findHotSearchStress',
         method: 'POST',
         headers: config.headers,
-        body: JSON.stringify({shopMapId: sqid})
+        body: JSON.stringify({cityId: cityId})
     });
     return data;
 }

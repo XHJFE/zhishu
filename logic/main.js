@@ -13,17 +13,6 @@ let dump = require('../lib/dump');
 let tools = require('../lib/templateTool');
 
 /**
- * dump生成器
- * @param filename
- */
-function createDumpHandler(filename) {
-    return _.once(function (data) {
-        console.log('==================dump ' + filename + '========================');
-        dump.dump(JSON.stringify(data), filename);
-    });
-}
-
-/**
  * 获取热门小区折线图数据
  * @param data
  */
@@ -57,12 +46,13 @@ function resetSiteInfo(data) {
         data.baseInfo.name && (data.cityName = data.baseInfo.name);
         data.baseInfo.domain && (data.siteDomain = data.baseInfo.domain);
     }
+    data.hasMetro = !!(data.metroLine && data.metroLine.length);
     // 处理域名项
     data.siteDomain = data.siteDomain.replace(/\/+$/, '');
 }
 
 /**
- * 挂在插件
+ * 挂载插件
  * @param data
  */
 function loadPlus(data) {
@@ -87,7 +77,7 @@ function pluckData(obj, pro, newPro, newProDefault) {
     delete obj[pro];
 }
 
-let dumpCityInfo = createDumpHandler('cityinfo.json');
+let dumpMetro = dump.createDumpHandler('metro.json');
 
 /**
  * 根路由处理器
@@ -105,6 +95,7 @@ function root(req, res, next) {
             menus: 'array',
             cities: 'array',
             baseInfo: 'object',
+            metroLine: 'array',
             cityUpList: 'array',
             cityDownList: 'array',
             cityInfo: 'object',
@@ -153,6 +144,7 @@ function house(req, res, next) {
             menus: 'array',
             cities: 'array',
             baseInfo: 'object',
+            metroLine: 'array',
             cityInfo: 'object',
             viewNum: 'array',
             profession: 'object',
@@ -175,7 +167,6 @@ function house(req, res, next) {
 
         resetSiteInfo(data);
         loadPlus(data);
-        // dumpCityInfo(data);
         res.render('house', data);
     });
 }
@@ -195,11 +186,30 @@ function metro(req, res, next) {
         util.resetDataByMap(data, {
             menus: 'array',
             cities: 'array',
-            baseInfo: 'object'
+            baseInfo: 'object',
+            metroLine: 'array',
+            upData: 'object',
+            downData: 'object',
+            stationData: 'object'
         });
 
         data.tab_index = 1;
+        // 处理列表数据
+        pluckData(data, 'upData', 'upList', []);
+        pluckData(data, 'downData', 'downList', []);
+        pluckData(data, 'stationData', 'stationInfo', {});
+
+        // 过滤涨跌幅榜数据
+        data.upList = data.upList.filter(function (v) {
+            return v.ratio - 0 > 1;
+        });
+        data.downList = data.downList.filter(function (v) {
+            return v.ratio - 0 < 1;
+        });
+
         resetSiteInfo(data);
+        loadPlus(data);
+        dumpMetro(data);
         res.render('metro', data);
     });
 }
@@ -219,7 +229,8 @@ function housePK(req, res, next) {
         util.resetDataByMap(data, {
             menus: 'array',
             cities: 'array',
-            baseInfo: 'object'
+            baseInfo: 'object',
+            metroLine: 'array'
         });
 
         data.tab_index = 3;

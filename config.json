@@ -78,6 +78,12 @@
     "/web/housePrice/stress/findHotSearchStress",
     "/web/housePrice/record/stress/default",
     "/web/housePrice/record/findSearchCount",
-    "/web/housePrice/pk/find"
+    "/web/housePrice/pk/find",
+    "/web/house/findMetros/{cityId}",
+    "/web/housePrice/subway/findStationAvgPrice",
+    "/web/housePrice/subway/priceUp",
+    "/web/housePrice/subway/priceDown",
+    "/web/housePrice/subway/map",
+    "/web/housePrice/subway/findHotAvgPriceStation"
   ]
 }

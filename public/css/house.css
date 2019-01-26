@@ -1328,12 +1328,16 @@ a {
     position: relative;
     margin-left: 16px;
 }
+.metro-rolling-box ul li:last-child{
+    border-top: none;
+}
 
 .metro-rolling-box ul li.last {
     width: 0px;
 }
 
 .metro-rolling-box ul {
+    width: 9999px;
     position: relative;
     margin-top: 12px;
     display: block;
@@ -1353,14 +1357,15 @@ a {
 
 .metro-rolling-box ul .station-circle {
     display: inline-block;
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     border: 2px solid #cd3301;
     border-radius: 100%;
     position: absolute;
     z-index: 1;
-    left: -16px;
+    left: -15px;
     top: -8px;
+    box-sizing: initial;
 }
 
 .metro-rolling-box ul li.cur .subway-name {
@@ -1391,6 +1396,7 @@ a {
     background: #cd3301;
     border-radius: 100%;
     cursor: pointer;
+    z-index: 1;
 }
 
 .metro-btn.prev {
