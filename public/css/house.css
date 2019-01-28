@@ -1535,7 +1535,7 @@ a {
 }
 
 .metro-btn.red {
-    color: red;
+    background-color: red;
 }
 
 /***  iceblue ***/
@@ -1564,7 +1564,7 @@ a {
 }
 
 .metro-btn.iceblue {
-    color: #1C5DF7;
+    background-color: #1C5DF7;
 }
 
 /***  winegreen ***/
@@ -1593,7 +1593,7 @@ a {
 }
 
 .metro-btn.winegreen {
-    color: #1b9e64;
+    background-color: #1b9e64;
 }
 
 /***  purple ***/
@@ -1622,7 +1622,7 @@ a {
 }
 
 .metro-btn.purple {
-    color: #8a6de9;
+    background-color: #8a6de9;
 }
 
 /***  yellow ***/
@@ -1651,7 +1651,7 @@ a {
 }
 
 .metro-btn.yellow {
-    color: #d0d01c;
+    background-color: #d0d01c;
 }
 
 /***  blue ***/
@@ -1680,7 +1680,7 @@ a {
 }
 
 .metro-btn.blue {
-    color: blue;
+    background-color: blue;
 }
 
 /***  green ***/
@@ -1709,5 +1709,5 @@ a {
 }
 
 .metro-btn.green {
-    color: green;
+    background-color: green;
 }
