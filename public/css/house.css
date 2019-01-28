@@ -1328,7 +1328,8 @@ a {
     position: relative;
     margin-left: 16px;
 }
-.metro-rolling-box ul li:last-child{
+
+.metro-rolling-box ul li:last-child {
     border-top: none;
 }
 
@@ -1505,4 +1506,208 @@ a {
 
 .pk_animation {
     animation: pk_ani .5s ease 0s 3;
+}
+
+/* 地铁线路色卡 */
+/***  Red ***/
+.metro-list.red a.active {
+    background-color: red;
+}
+
+.choose-subway.red .drop-menu-item {
+    color: red;
+}
+
+.choose-subway.red .metro-rolling-box ul li, .choose-subway.red .metro-rolling-box:before {
+    border-color: red;
+}
+
+.metro-rolling-box.red ul .station-circle {
+    border-color: red;
+}
+
+.metro-rolling-box.red ul li.cur .subway-name {
+    color: red;
+}
+
+.metro-rolling-box.red ul li.cur .station-circle {
+    background-color: red;
+}
+
+.metro-btn.red {
+    color: red;
+}
+
+/***  iceblue ***/
+.metro-list.iceblue a.active {
+    background-color: #1C5DF7;
+}
+
+.choose-subway.iceblue .drop-menu-item {
+    color: #1C5DF7;
+}
+
+.choose-subway.iceblue .metro-rolling-box ul li, .choose-subway.iceblue .metro-rolling-box:before {
+    border-color: #1C5DF7;
+}
+
+.metro-rolling-box.iceblue ul .station-circle {
+    border-color: #1C5DF7;
+}
+
+.metro-rolling-box.iceblue ul li.cur .subway-name {
+    color: #1C5DF7;
+}
+
+.metro-rolling-box.iceblue ul li.cur .station-circle {
+    background-color: #1C5DF7;
+}
+
+.metro-btn.iceblue {
+    color: #1C5DF7;
+}
+
+/***  winegreen ***/
+.metro-list.winegreen a.active {
+    background-color: #1b9e64;
+}
+
+.choose-subway.winegreen .drop-menu-item {
+    color: #1b9e64;
+}
+
+.choose-subway.winegreen .metro-rolling-box ul li, .choose-subway.winegreen .metro-rolling-box:before {
+    border-color: #1b9e64;
+}
+
+.metro-rolling-box.winegreen ul .station-circle {
+    border-color: #1b9e64;
+}
+
+.metro-rolling-box.winegreen ul li.cur .subway-name {
+    color: #1b9e64;
+}
+
+.metro-rolling-box.winegreen ul li.cur .station-circle {
+    background-color: #1b9e64;
+}
+
+.metro-btn.winegreen {
+    color: #1b9e64;
+}
+
+/***  purple ***/
+.metro-list.purple a.active {
+    background-color: #8a6de9;
+}
+
+.choose-subway.purple .drop-menu-item {
+    color: #8a6de9;
+}
+
+.choose-subway.purple .metro-rolling-box ul li, .choose-subway.purple .metro-rolling-box:before {
+    border-color: #8a6de9;
+}
+
+.metro-rolling-box.purple ul .station-circle {
+    border-color: #8a6de9;
+}
+
+.metro-rolling-box.purple ul li.cur .subway-name {
+    color: #8a6de9;
+}
+
+.metro-rolling-box.purple ul li.cur .station-circle {
+    background-color: #8a6de9;
+}
+
+.metro-btn.purple {
+    color: #8a6de9;
+}
+
+/***  yellow ***/
+.metro-list.yellow a.active {
+    background-color: #d0d01c;
+}
+
+.choose-subway.yellow .drop-menu-item {
+    color: #d0d01c;
+}
+
+.choose-subway.yellow .metro-rolling-box ul li, .choose-subway.yellow .metro-rolling-box:before {
+    border-color: #d0d01c;
+}
+
+.metro-rolling-box.yellow ul .station-circle {
+    border-color: #d0d01c;
+}
+
+.metro-rolling-box.yellow ul li.cur .subway-name {
+    color: #d0d01c;
+}
+
+.metro-rolling-box.yellow ul li.cur .station-circle {
+    background-color: #d0d01c;
+}
+
+.metro-btn.yellow {
+    color: #d0d01c;
+}
+
+/***  blue ***/
+.metro-list.blue a.active {
+    background-color: blue;
+}
+
+.choose-subway.blue .drop-menu-item {
+    color: blue;
+}
+
+.choose-subway.blue .metro-rolling-box ul li, .choose-subway.blue .metro-rolling-box:before {
+    border-color: blue;
+}
+
+.metro-rolling-box.blue ul .station-circle {
+    border-color: blue;
+}
+
+.metro-rolling-box.blue ul li.cur .subway-name {
+    color: blue;
+}
+
+.metro-rolling-box.blue ul li.cur .station-circle {
+    background-color: blue;
+}
+
+.metro-btn.blue {
+    color: blue;
+}
+
+/***  green ***/
+.metro-list.green a.active {
+    background-color: green;
+}
+
+.choose-subway.green .drop-menu-item {
+    color: green;
+}
+
+.choose-subway.green .metro-rolling-box ul li, .choose-subway.green .metro-rolling-box:before {
+    border-color: green;
+}
+
+.metro-rolling-box.green ul .station-circle {
+    border-color: green;
+}
+
+.metro-rolling-box.green ul li.cur .subway-name {
+    color: green;
+}
+
+.metro-rolling-box.green ul li.cur .station-circle {
+    background-color: green;
+}
+
+.metro-btn.green {
+    color: green;
 }

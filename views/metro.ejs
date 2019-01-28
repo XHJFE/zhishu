@@ -20,8 +20,10 @@
     <div class="content">
         <% include include/tabCard %>
         <!--地铁线路-->
-        <div class="choose-subway clearfix shenzhen-1" id="choosesubway">
-            <div class="metro-list clearfix" id="metroLineList">
+        <% let defaultMetroLineClass = metroInfo && metroInfo.length && metroInfo[0] && metroInfo[0].color || ''; %>
+        <div class="choose-subway clearfix shenzhen-1 <%= defaultMetroLineClass %>" id="choosesubway">
+            <div class="metro-list clearfix <%= defaultMetroLineClass %>"
+                 id="metroLineList">
                 <%
                 let defaultLine, defaultStation, startStation, endStation;
                 metroInfo && metroInfo.length && metroInfo.map(function(metro, index){
@@ -40,13 +42,14 @@
                 <% }); %>
             </div>
 
-            <div class="choose-subway-box clearfix">
+            <div class="choose-subway-box clearfix <%= defaultMetroLineClass %>">
                 <div class="drop-menu-item fl js-drop-menu clearfix"><%= defaultLine %> (<%= startStation %>
                     - <%= endStation %>)
                 </div>
-                <div class="metro-btn prev"><img src="<%= root[env] %>images/icon_prev.png" alt=""></div>
+                <div class="metro-btn prev <%= defaultMetroLineClass %>">
+                    <img src="<%= root[env] %>images/icon_prev.png" alt=""></div>
                 <div class="metro-rolling" id="metroRolling">
-                    <div class="metro-rolling-box js-rolling">
+                    <div class="metro-rolling-box js-rolling <%= defaultMetroLineClass %>">
                         <ul class="clearfix">
                             <% defaultStation && defaultStation.length && defaultStation.map(function(station, index){ %>
                             <li data-id="<%= tools.getPro(station, 'zhanid') %>"
@@ -60,7 +63,8 @@
                         <div class="rolling-line"></div>
                     </div>
                 </div>
-                <div class="metro-btn next"><img src="<%= root[env] %>images/icon_next.png" alt=""></div>
+                <div class="metro-btn next <%= defaultMetroLineClass %>">
+                    <img src="<%= root[env] %>images/icon_next.png" alt=""></div>
             </div>
         </div>
         <!--内容-->

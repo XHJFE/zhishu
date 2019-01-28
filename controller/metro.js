@@ -18,6 +18,7 @@ function dealMetro(data) {
     for (let k in group) {
         k && group.hasOwnProperty(k) && result.push({
             name: k,
+            color: group[k][0] && group[k][0].colour,
             station: group[k]
         });
     }
