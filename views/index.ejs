@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>区域房价</title>
+    <% include include/tdk %>
     <link rel="stylesheet" href="<%= root[env] %>css/house.css">
     <script type="text/javascript"
             src="http://api.map.baidu.com/api?v=3.0&ak=mGIVfCq3HtLt0aOqYO9tgWdpszLmBk1G"></script>
@@ -184,8 +184,10 @@ if(hotList.hotStress && hotList.hotStress.length){
                             href="<%= siteDomain %>/xiaoqu/<%= tools.getPro(stressInfo, "lpid") %>.html"
                             target="_blank"><%= tools.getPro(stressInfo, "lp_name") %></a></span>
                 <span class="address"><img src="<%= root[env] %>images/icon_slocation.png"
-                                           alt=""><%= tools.getPro(stressInfo, "qyname") %>&nbsp;&nbsp;<%= tools.getPro(stressInfo, "sqname") %></span>
-                <span class="more_link"><a href="<%= siteDomain %>/xiaoqu/esf/<%= tools.getPro(stressInfo, "lpid") %>/" target="_blank">更多>></a></span>
+                                           alt=""><%= tools.getPro(stressInfo, "qyname") %>
+                    &nbsp;&nbsp;<%= tools.getPro(stressInfo, "sqname") %></span>
+                <span class="more_link"><a href="<%= siteDomain %>/xiaoqu/esf/<%= tools.getPro(stressInfo, "lpid") %>/"
+                                           target="_blank">更多>></a></span>
             </p>
             <div class="hotleft">
                 <p class="state"><%= tools.getPro(stressInfo, "month") %>月二手房均价 <span
@@ -207,10 +209,12 @@ if(hotList.hotStress && hotList.hotStress.length){
                 %>
                 <a href="<%= siteDomain %>/ershoufang/<%= tools.getPro(house, "hsmid") %>.html" target="_blank">
                     <span class="price"><%= tools.getPro(house, "totalPrice") %>万</span>
-                    <div class="imgbox"><img src="<%= tools.getClearImgPath(tools.getPro(house, "thumb")) %>" width="203" height="135" alt="<%= tools.getPro(house, "title") %>">
+                    <div class="imgbox"><img src="<%= tools.getClearImgPath(tools.getPro(house, "thumb")) %>"
+                                             width="203" height="135" alt="<%= tools.getPro(house, "title") %>">
                     </div>
                     <p class="txt"><%= tools.getPro(house, "title") %></p>
-                    <p><span class="jg"><%= tools.getPro(house, "roomNumber") %>室<%= tools.getPro(house, "hallNumber") %>厅<%= tools.getPro(house, "toiletNumber") %>
+                    <p><span class="jg"><%= tools.getPro(house, "roomNumber") %>
+                            室<%= tools.getPro(house, "hallNumber") %>厅<%= tools.getPro(house, "toiletNumber") %>
                             卫</span> <span class="mj"><%= tools.getPro(house, "area") %>㎡</span></p>
                 </a>
                 <% }); %>
