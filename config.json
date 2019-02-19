@@ -84,6 +84,7 @@
     "/web/housePrice/subway/priceUp",
     "/web/housePrice/subway/priceDown",
     "/web/housePrice/subway/map",
-    "/web/housePrice/subway/findHotAvgPriceStation"
+    "/web/housePrice/subway/findHotAvgPriceStation",
+    "/web/housePrice/record/fuzzySearch"
   ]
 }
