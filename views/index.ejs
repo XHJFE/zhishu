@@ -118,7 +118,7 @@
             </div>
             <ul class="list" id="up_list">
                 <%
-                cityUpList.map(function (upItem, index) {
+                cityUpList && cityUpList.length && cityUpList.map(function (upItem, index) {
                 %>
                 <li>
                     <div class="order"><span
@@ -148,7 +148,7 @@
             </div>
             <ul class="list" id="down_list">
                 <%
-                cityDownList.map(function (upItem, index) {
+                cityDownList && cityDownList.length && cityDownList.map(function (upItem, index) {
                 %>
                 <li>
                     <div class="order"><span
