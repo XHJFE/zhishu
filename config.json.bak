@@ -9,11 +9,11 @@
   "proxy": {
     "timeout": 5000,
     "proxy_server_url": {
-      "dev": "http://console.xhj.com",
+      "dev": "http://zcms.xhj.com:88",
       "production": "http://xhj-sz-7b:8080"
     },
     "base_server_url": {
-      "dev": "http://console.xhj.com",
+      "dev": "http://192.168.2.117:88",
       "production": "http://xhj-sz-7b:8080"
     },
     "headers": {

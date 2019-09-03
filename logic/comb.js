@@ -50,6 +50,10 @@ let commander = {
         else {
             res.json(_.extend(settings.paramError));
         }
+    },
+    // 检索房价条目
+    keysearch: function (params, req, res, next) {
+        res.json(_.extend(settings.paramError));
     }
 };
 

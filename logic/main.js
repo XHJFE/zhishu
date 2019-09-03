@@ -77,7 +77,7 @@ function pluckData(obj, pro, newPro, newProDefault) {
     delete obj[pro];
 }
 
-let dumpMetro = dump.createDumpHandler('metro.json');
+let dumpData = dump.createDumpHandler('index.json');
 
 /**
  * 根路由处理器
@@ -122,7 +122,8 @@ function root(req, res, next) {
         delete data.viewNum;
         data.tab_index = 0;
         resetSiteInfo(data);
-        loadPlus(data);
+        loadPlus(data);        
+        dumpData(data);
         console.log("==============Time Cost==============", stat.get());
         res.render('index', data);
     });
@@ -209,7 +210,6 @@ function metro(req, res, next) {
 
         resetSiteInfo(data);
         loadPlus(data);
-        dumpMetro(data);
         res.render('metro', data);
     });
 }
