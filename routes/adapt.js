@@ -2,12 +2,13 @@ let express = require('express');
 let router = express.Router();
 let helper = require('../logic/helper');
 let util = require('../lib/util');
+let config = require('../config.json').base;
 
 router.get('/**', function (req, res, next) {
     let userAgent = req.headers['user-agent'].toLowerCase();
     let isMobile = userAgent.match(/(iphone|ipod|ipad|android)/);
     let host = 'http://' + req.hostname + '/';
-    let url = req.originalUrl;
+    let url = config.root[config.env] + req.originalUrl;
 
     if (isMobile) {
         helper.getMobileDomain(host).then(function (r) {
