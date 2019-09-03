@@ -8,7 +8,7 @@ router.get('/**', function (req, res, next) {
     let userAgent = req.headers['user-agent'].toLowerCase();
     let isMobile = userAgent.match(/(iphone|ipod|ipad|android)/);
     let host = 'http://' + req.hostname + '/';
-    let url = config.root[config.env] + req.originalUrl;
+    let url = config.root[config.env] + req.originalUrl.substr(1);
 
     if (isMobile) {
         helper.getMobileDomain(host).then(function (r) {
