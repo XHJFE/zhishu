@@ -10,6 +10,7 @@ let log = log4js.getLogger('app');
 let config = require('./config.json');
 let _ = require('underscore');
 
+var adapt = require('./routes/adapt');
 var routes = require('./routes/index');
 var apiRouter = require('./routes/api');
 var apiCombRouter = require('./routes/comb');
@@ -24,10 +25,11 @@ app.set('view engine', 'ejs');
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/**', adapt);
 app.use('/', routes);
 app.use('/api', apiRouter);
 app.use('/comb', apiCombRouter);
