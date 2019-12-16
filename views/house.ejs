@@ -40,7 +40,7 @@
                         </div>
                         <% if(tools.getPro(cityInfo, "ratio") !== ''){ %>
                         <div class="sj">环比上月<span
-                                    class="<% if(tools.getPro(cityInfo, "ratio") > 0){ %>red<% }else{ %>green<% } %>"><%= tools.getPro(cityInfo, 'ratio') %>
+                                    class="<% if(tools.getPro(cityInfo, "ratio") > 0){ %>red<% }else{ %>green<% } %>"><%= tools.getRatio(tools.getPro(cityInfo, 'ratio')) %>
                                 %
                                 <% if(tools.getPro(cityInfo, "ratio") > 0){ %>
                                 ↑
