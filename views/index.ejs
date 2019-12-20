@@ -131,7 +131,7 @@
                                 target="_blank"><%= tools.getPro(upItem, 'lpname') %></a>
                     </div>
                     <div class="price"><%= tools.getPro(upItem, 'avg_price') %>元/㎡</div>
-                    <div class="zf"><%= (tools.getPro(upItem, 'ratio') - 0).toFixed(2) %>% ↑</div>
+                    <div class="zf"><%= tools.getRatioH(tools.getPro(upItem, 'ratio') - 0) %>% ↑</div>
                 </li>
                 <% }); %>
             </ul>
@@ -161,7 +161,7 @@
                                 target="_blank"><%= tools.getPro(upItem, 'lpname') %></a>
                     </div>
                     <div class="price"><%= tools.getPro(upItem, 'avg_price') %>元/㎡</div>
-                    <div class="jf"><%= (tools.getPro(upItem, 'ratio') - 0).toFixed(2) %>% ↓</div>
+                    <div class="jf"><%= tools.getRatioH(tools.getPro(upItem, 'ratio') - 0) %>% ↓</div>
                 </li>
                 <% }); %>
             </ul>

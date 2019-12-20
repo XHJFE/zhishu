@@ -1,32 +1,34 @@
 <!DOCTYPE html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>【<%= baseInfo.name %>地铁房价_<%= baseInfo.name %>地铁周边房价】-象盒指数</title>
     <meta name="keywords" content="<%= baseInfo.name %>地铁房价" />
-    <meta name="description" content="<%= baseInfo.name %>地铁沿线有哪些楼盘？<%= baseInfo.name %>地铁沿线新房价格多少？象盒指数为您提供<%= baseInfo.name %>最新地铁周边房价走势。" />
+    <meta name="description"
+        content="<%= baseInfo.name %>地铁沿线有哪些楼盘？<%= baseInfo.name %>地铁沿线新房价格多少？象盒指数为您提供<%= baseInfo.name %>最新地铁周边房价走势。" />
     <link rel="stylesheet" href="<%= root[env] %>css/house.css">
     <script type="text/javascript"
-            src="http://api.map.baidu.com/api?v=3.0&ak=mGIVfCq3HtLt0aOqYO9tgWdpszLmBk1G"></script>
+        src="http://api.map.baidu.com/api?v=3.0&ak=mGIVfCq3HtLt0aOqYO9tgWdpszLmBk1G"></script>
     <% include include/cssjs %>
     <script>
         var metroInfo = "<%= JSON.stringify(metroInfo) %>";
     </script>
 </head>
+
 <body>
-<% include include/header %>
-<% include include/anchor %>
-<!--小区信息-->
-<div class="top">
-    <div class="content">
-        <% include include/tabCard %>
-        <!--地铁线路-->
-        <% let defaultMetroLineClass = metroInfo && metroInfo.length && metroInfo[0] && metroInfo[0].color || ''; %>
-        <div class="choose-subway clearfix shenzhen-1 <%= defaultMetroLineClass %>" id="choosesubway">
-            <div class="metro-list clearfix <%= defaultMetroLineClass %>"
-                 id="metroLineList">
-                <%
+    <% include include/header %>
+    <% include include/anchor %>
+    <!--小区信息-->
+    <div class="top">
+        <div class="content">
+            <% include include/tabCard %>
+            <!--地铁线路-->
+            <% let defaultMetroLineClass = metroInfo && metroInfo.length && metroInfo[0] && metroInfo[0].color || ''; %>
+            <div class="choose-subway clearfix shenzhen-1 <%= defaultMetroLineClass %>" id="choosesubway">
+                <div class="metro-list clearfix <%= defaultMetroLineClass %>" id="metroLineList">
+                    <%
                 let defaultLine, defaultStation, startStation, endStation;
                 metroInfo && metroInfo.length && metroInfo.map(function(metro, index){
                     if (index === 0) {
@@ -36,230 +38,216 @@
                         endStation = defaultStation && defaultStation.length && defaultStation[defaultStation.length - 1].zdname || '';
                     }
                 %>
-                <a
-                        <% if(index === 0){ %>
-                        class="active"
-                        <% } %>
+                    <a <% if(index === 0){ %> class="active" <% } %>
                         href="javascript:;"><%= tools.getPro(metro, "name") %></a>
-                <% }); %>
-            </div>
+                    <% }); %>
+                </div>
 
-            <div class="choose-subway-box clearfix <%= defaultMetroLineClass %>">
-                <div class="drop-menu-item fl js-drop-menu clearfix"><%= defaultLine %> (<%= startStation %>
-                    - <%= endStation %>)
-                </div>
-                <div class="metro-btn prev <%= defaultMetroLineClass %>">
-                    <img src="<%= root[env] %>images/icon_prev.png" alt=""></div>
-                <div class="metro-rolling" id="metroRolling">
-                    <div class="metro-rolling-box js-rolling <%= defaultMetroLineClass %>">
-                        <ul class="clearfix">
-                            <% defaultStation && defaultStation.length && defaultStation.map(function(station, index){ %>
-                            <li data-id="<%= tools.getPro(station, 'zhanid') %>"
-                                    <% if(index === 0){ %>
-                                class="cur"
-                                    <% } %>
-                            ><a href="javascript:;"><i class="icons station-circle"></i>
-                                    <p class="subway-name"><%= tools.getPro(station, 'zdname') %></p></a></li>
-                            <% }); %>
-                        </ul>
-                        <div class="rolling-line"></div>
+                <div class="choose-subway-box clearfix <%= defaultMetroLineClass %>">
+                    <div class="drop-menu-item fl js-drop-menu clearfix"><%= defaultLine %> (<%= startStation %>
+                        - <%= endStation %>)
                     </div>
-                </div>
-                <div class="metro-btn next <%= defaultMetroLineClass %>">
-                    <img src="<%= root[env] %>images/icon_next.png" alt=""></div>
-            </div>
-        </div>
-        <!--内容-->
-        <div class="showbox linkbox">
-            <div class="nodatabox"
-                    <% if(!(stationInfo && stationInfo.zdname)){ %>
-                 style="display: block;"
-                    <% } %>
-            >暂无数据
-            </div>
-            <div class="leftbox"
-                    <% if(!(stationInfo && stationInfo.zdname)){ %>
-                 style="display: none;"
-                    <% } %>
-            >
-                <div class="citybox"><img src="<%= root[env] %>images/icon_subway.png" alt=""
-                                          class="bounce subway"><span
-                            class="city"><%= tools.getPro(stationInfo, 'zdname') %></span></div>
-                <div class="detailbox">
-                    <p class="info"><span class="month"><%= new Date().getMonth() + 1 %>月</span> 象盒参考均价</p>
-                    <div class="pricebox">
-                        <div class="mj"><span class="num timer count-title"
-                                              id="count-number"><%= tools.getPro(stationInfo, 'avg_price') %></span>元/平米
+                    <div class="metro-btn prev <%= defaultMetroLineClass %>">
+                        <img src="<%= root[env] %>images/icon_prev.png" alt=""></div>
+                    <div class="metro-rolling" id="metroRolling">
+                        <div class="metro-rolling-box js-rolling <%= defaultMetroLineClass %>">
+                            <ul class="clearfix">
+                                <% defaultStation && defaultStation.length && defaultStation.map(function(station, index){ %>
+                                <li data-id="<%= tools.getPro(station, 'zhanid') %>" <% if(index === 0){ %> class="cur"
+                                    <% } %>><a href="javascript:;"><i class="icons station-circle"></i>
+                                        <p class="subway-name"><%= tools.getPro(station, 'zdname') %></p>
+                                    </a></li>
+                                <% }); %>
+                            </ul>
+                            <div class="rolling-line"></div>
                         </div>
-                        <% baseRatio = tools.splitRatio(tools.getPro(stationInfo, 'ratio')); %>
-                        <div class="sj">环比上月<span
-                                    class="<% if(baseRatio[1] === 'add'){ %>red<% }else{ %>green<% } %>"><%= baseRatio[0] %>
-                                %
-                                <% if(baseRatio[1] === 'add'){ %>
-                                ↑
-                                <% }else{ %>
-                                ↓
-                                <% } %>
-                            </span></div>
                     </div>
-
-                    <p class="data">已有<%= tools.getPro(stationInfo, 'total') %>人查询地铁房价</p>
+                    <div class="metro-btn next <%= defaultMetroLineClass %>">
+                        <img src="<%= root[env] %>images/icon_next.png" alt=""></div>
                 </div>
             </div>
-            <div class="rightbox">
-                <ul>
-                    <li>
-                        <p class="title">周边小区</p>
-                        <p class="txt dtxt"><span
+            <!--内容-->
+            <div class="showbox linkbox">
+                <div class="nodatabox" <% if(!(stationInfo && stationInfo.zdname)){ %> style="display: block;" <% } %>>
+                    暂无数据
+                </div>
+                <div class="leftbox" <% if(!(stationInfo && stationInfo.zdname)){ %> style="display: none;" <% } %>>
+                    <div class="citybox"><img src="<%= root[env] %>images/icon_subway.png" alt=""
+                            class="bounce subway"><span class="city"><%= tools.getPro(stationInfo, 'zdname') %></span>
+                    </div>
+                    <div class="detailbox">
+                        <p class="info"><span class="month"><%= new Date().getMonth() + 1 %>月</span> 象盒参考均价</p>
+                        <div class="pricebox">
+                            <div class="mj"><span class="num timer count-title"
+                                    id="count-number"><%= tools.getPro(stationInfo, 'avg_price') %></span>元/平米
+                            </div>
+                            <% baseRatio = tools.splitRatio(tools.getPro(stationInfo, 'ratio')); %>
+                            <div class="sj">环比上月<span
+                                    class="<% if(baseRatio[1] === 'add'){ %>red<% }else{ %>green<% } %>"><%= baseRatio[0] %>
+                                    %
+                                    <% if(baseRatio[1] === 'add'){ %>
+                                    ↑
+                                    <% }else{ %>
+                                    ↓
+                                    <% } %>
+                                </span></div>
+                        </div>
+
+                        <p class="data">已有<%= tools.getPro(stationInfo, 'total') %>人查询地铁房价</p>
+                    </div>
+                </div>
+                <div class="rightbox">
+                    <ul>
+                        <li>
+                            <p class="title">周边小区</p>
+                            <p class="txt dtxt"><span
                                     class="num blue"><%= tools.getPro(stationInfo, 'lp_num') %></span><span
                                     class="dw dwt">个</span></p>
-                    </li>
-                    <li>
-                        <p class="title">最低均价小区</p>
-                        <p class="txt dtxt"><span class="num dblue"><%= tools.getPro(stationInfo, 'min_price') %></span>
-                        </p>
-                        <p class="dwtxt">元/平米</p>
-                        <p class="xqtxt"><a
+                        </li>
+                        <li>
+                            <p class="title">最低均价小区</p>
+                            <p class="txt dtxt"><span
+                                    class="num dblue"><%= tools.getPro(stationInfo, 'min_price') %></span>
+                            </p>
+                            <p class="dwtxt">元/平米</p>
+                            <p class="xqtxt"><a
                                     href="<%= siteDomain %>/xiaoqu/<%= tools.getPro(stationInfo, 'min_lpid') %>.html"
                                     target="_blank"><%= tools.getPro(stationInfo, 'min_lpname') %></a></p>
-                    </li>
-                    <li>
-                        <p class="title">最高均价小区</p>
-                        <p class="txt dtxt"><span class="num dblue"><%= tools.getPro(stationInfo, 'max_price') %></span>
-                        </p>
-                        <p class="dwtxt">元/平米</p>
-                        <p class="xqtxt"><a
+                        </li>
+                        <li>
+                            <p class="title">最高均价小区</p>
+                            <p class="txt dtxt"><span
+                                    class="num dblue"><%= tools.getPro(stationInfo, 'max_price') %></span>
+                            </p>
+                            <p class="dwtxt">元/平米</p>
+                            <p class="xqtxt"><a
                                     href="<%= siteDomain %>/xiaoqu/<%= tools.getPro(stationInfo, 'max_lpid') %>.html"
                                     target="_blank"><%= tools.getPro(stationInfo, 'max_lpname') %></a></p>
-                    </li>
-                    <li>
-                        <p class="title">在售房源</p>
-                        <p class="txt"><span
+                        </li>
+                        <li>
+                            <p class="title">在售房源</p>
+                            <p class="txt"><span
                                     class="num blue"><%= tools.getPro(stationInfo, 'house_num_all') %></span><span
                                     class="dw">套</span></p>
-                    </li>
-                    <li class="noborder">
-                        <p class="title">今日涨价房源</p>
-                        <p class="txt"><span
+                        </li>
+                        <li class="noborder">
+                            <p class="title">今日涨价房源</p>
+                            <p class="txt"><span
                                     class="num red"><%= tools.getPro(stationInfo, 'price_increase') %></span><span
                                     class="dw">套</span></p>
-                    </li>
-                    <li class="noborder">
-                        <p class="title">今日降价房源</p>
-                        <p class="txt"><span
+                        </li>
+                        <li class="noborder">
+                            <p class="title">今日降价房源</p>
+                            <p class="txt"><span
                                     class="num green"><%= tools.getPro(stationInfo, 'price_reduction') %></span><span
                                     class="dw">套</span></p>
-                    </li>
-                </ul>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
-</div>
-<!--房价地图-->
-<div class="mapbox submapbox linkbox">
-    <div class="title"><%= startStation %>房价地图</div>
-    <div class="content" id="map_container">
-        <div class="placeholder">正在生成地图，请稍后...</div>
+    <!--房价地图-->
+    <div class="mapbox submapbox linkbox">
+        <div class="title"><%= startStation %>房价地图</div>
+        <div class="content" id="map_container">
+            <div class="placeholder">正在生成地图，请稍后...</div>
+        </div>
     </div>
-</div>
-<!--房价走势-->
-<div class="zsbox linkbox" id="line_panel">
-    <div class="title"><%= startStation %>二手房价走势</div>
-    <div class="content" id="line_container">
-        <div class="placeholder">正在生成走势图，请稍后...</div>
+    <!--房价走势-->
+    <div class="zsbox linkbox" id="line_panel">
+        <div class="title"><%= startStation %>二手房价走势</div>
+        <div class="content" id="line_container">
+            <div class="placeholder">正在生成走势图，请稍后...</div>
+        </div>
     </div>
-</div>
-<!--涨幅榜-->
-<div class="zfbox linkbox">
-    <div class="zfleft">
-        <div class="title">近1个月<%= startStation %>房价涨幅榜</div>
-        <div class="content">
-            <div class="namelist">
-                <div class="order">排行</div>
-                <div class="name">小区</div>
-                <div class="price">小区均价</div>
-                <div class="zf">涨幅</div>
-            </div>
-            <ul class="list">
-                <%
+    <!--涨幅榜-->
+    <div class="zfbox linkbox">
+        <div class="zfleft">
+            <div class="title">近1个月<%= startStation %>房价涨幅榜</div>
+            <div class="content">
+                <div class="namelist">
+                    <div class="order">排行</div>
+                    <div class="name">小区</div>
+                    <div class="price">小区均价</div>
+                    <div class="zf">涨幅</div>
+                </div>
+                <ul class="list">
+                    <%
                 if(upList && upList.length){
                 upList.map(function(item, index){
                     let ratio = tools.splitRatio(tools.getPro(item, 'ratio'));
                 %>
-                <li>
-                    <div class="order"><span
-                                <% if(index < 3){ %>
-                                class="redcolor"
-                                <% } %>
-                        ><%= index + 1 %></span></div>
-                    <div class="name"><a href="<%= siteDomain %>/xiaoqu/<%= tools.getPro(item, 'lpid') %>.html"
-                                         target="_blank"><%= tools.getPro(item, 'lpname') %></a></div>
-                    <div class="price"><%= tools.getPro(item, 'avg_price') %>元/㎡</div>
-                    <div class="<% if(ratio[1] === 'add'){ %>zf<% }else{ %>jf<% } %>"><%= ratio[0] %>%
-                        <% if(ratio[1] === 'add'){ %>
-                        ↑
-                        <% }else{ %>
-                        ↓
-                        <% } %>
-                    </div>
-                </li>
-                <%
+                    <li>
+                        <div class="order"><span <% if(index < 3){ %> class="redcolor" <% } %>><%= index + 1 %></span>
+                        </div>
+                        <div class="name"><a href="<%= siteDomain %>/xiaoqu/<%= tools.getPro(item, 'lpid') %>.html"
+                                target="_blank"><%= tools.getPro(item, 'lpname') %></a></div>
+                        <div class="price"><%= tools.getPro(item, 'avg_price') %>元/㎡</div>
+                        <div class="<% if(ratio[1] === 'add'){ %>zf<% }else{ %>jf<% } %>">
+                            <%= (ratio[0]*100).toFixed(2) %>%
+                            <% if(ratio[1] === 'add'){ %>
+                            ↑
+                            <% }else{ %>
+                            ↓
+                            <% } %>
+                        </div>
+                    </li>
+                    <%
                 });
                 }else{
                 %>
-                <div style="text-align: center;line-height: 32px;">暂无数据</div>
-                <% } %>
-            </ul>
-        </div>
-    </div>
-    <div class="zfright">
-        <div class="title">近1个月<%= startStation %>房价降幅榜</div>
-        <div class="content">
-            <div class="namelist">
-                <div class="order">排行</div>
-                <div class="name">小区</div>
-                <div class="price">小区均价</div>
-                <div class="zf">涨幅</div>
+                    <div style="text-align: center;line-height: 32px;">暂无数据</div>
+                    <% } %>
+                </ul>
             </div>
-            <ul class="list">
-                <%
+        </div>
+        <div class="zfright">
+            <div class="title">近1个月<%= startStation %>房价降幅榜</div>
+            <div class="content">
+                <div class="namelist">
+                    <div class="order">排行</div>
+                    <div class="name">小区</div>
+                    <div class="price">小区均价</div>
+                    <div class="zf">涨幅</div>
+                </div>
+                <ul class="list">
+                    <%
                 if(downList && downList.length){
                 downList.map(function(item, index){
                     let ratio = tools.splitRatio(tools.getPro(item, 'ratio'));
                 %>
-                <li>
-                    <div class="order"><span
-                                <% if(index < 3){ %>
-                                class="redcolor"
-                                <% } %>
-                        ><%= index + 1 %></span></div>
-                    <div class="name"><a href="<%= siteDomain %>/xiaoqu/<%= tools.getPro(item, 'lpid') %>.html"
-                                         target="_blank"><%= tools.getPro(item, 'lpname') %></a></div>
-                    <div class="price"><%= tools.getPro(item, 'avg_price') %>元/㎡</div>
-                    <div class="<% if(ratio[1] === 'add'){ %>zf<% }else{ %>jf<% } %>"><%= ratio[0] %>%
-                        <% if(ratio[1] === 'add'){ %>
-                        ↑
-                        <% }else{ %>
-                        ↓
-                        <% } %>
-                    </div>
-                </li>
-                <%
+                    <li>
+                        <div class="order"><span <% if(index < 3){ %> class="redcolor" <% } %>><%= index + 1 %></span>
+                        </div>
+                        <div class="name"><a href="<%= siteDomain %>/xiaoqu/<%= tools.getPro(item, 'lpid') %>.html"
+                                target="_blank"><%= tools.getPro(item, 'lpname') %></a></div>
+                        <div class="price"><%= tools.getPro(item, 'avg_price') %>元/㎡</div>
+                        <div class="<% if(ratio[1] === 'add'){ %>zf<% }else{ %>jf<% } %>"><%= (ratio[0]*100).toFixed(2) %>%
+                            <% if(ratio[1] === 'add'){ %>
+                            ↑
+                            <% }else{ %>
+                            ↓
+                            <% } %>
+                        </div>
+                    </li>
+                    <%
                 });
                 }else{ %>
-                <div style="text-align: center;line-height: 32px;">暂无数据</div>
-                <% } %>
-            </ul>
+                    <div style="text-align: center;line-height: 32px;">暂无数据</div>
+                    <% } %>
+                </ul>
+            </div>
         </div>
     </div>
-</div>
-<!--热门小区房价走势-->
-<div class="hotzsbox linkbox">
-    <div class="title"><%= startStation %>热门小区二手房走势</div>
-    <div class="content"></div>
-    <a href="<%= siteDomain %>/ershoufang" class="more" target="_blank">查看更多资源</a>
-</div>
-<% include include/footer %>
-<script>require(['pc_zhishu_metro']);</script>
+    <!--热门小区房价走势-->
+    <div class="hotzsbox linkbox">
+        <div class="title"><%= startStation %>热门小区二手房走势</div>
+        <div class="content"></div>
+        <a href="<%= siteDomain %>/ershoufang" class="more" target="_blank">查看更多资源</a>
+    </div>
+    <% include include/footer %>
+    <script>require(['pc_zhishu_metro']);</script>
 </body>
+
 </html>
